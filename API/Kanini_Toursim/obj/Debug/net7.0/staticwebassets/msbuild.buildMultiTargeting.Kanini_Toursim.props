@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Kanini_Toursim.props" />
+</Project>
