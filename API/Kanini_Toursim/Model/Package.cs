@@ -8,32 +8,50 @@ namespace Kanini_Toursim.Model
         [Key]
         public int? PackageID { get; set; }
 
-        [ForeignKey("Admin_User")] // This should be the correct foreign key property name for the relationship with the Admin_User entity
+        // Foreign key for Admin_User
+        [ForeignKey("Admin_User")]
         public int? Id { get; set; }
+        public Admin_User? Admin_User { get; set; }
 
-        public string ImageName { get; set; }
-        public string PricePerPerson { get; set; }
-        public string Destination { get; set; }
-        public string VehicleType { get; set; }
-        public string Location { get; set; }
-        public int? Days { get; set; }
-        public int? Nights { get; set; }
-        public int? Totaldays { get; set; }
-        public string ItineraryDetails { get; set; }
+        [Required]
+        public string? OfferingType { get; set; }
 
-        [ForeignKey("Hotel")] // This should be the correct foreign key property name for the relationship with the Hotel entity
-        public int HotelId { get; set; }
+        [Required]
+        public string? Destination { get; set; }
 
-        [ForeignKey("Travel")] // This should be the correct foreign key property name for the relationship with the Travel entity
+        [Required]
+        public string? Location { get; set; }
+
+        [Required]
+        public int Days { get; set; }
+
+        [Required]
+        public int Nights { get; set; }
+
+        [Required]
+        public int Totaldays { get; set; }
+
+        [Required]
+        public string? ItineraryDetails { get; set; }
+
+        [Required]
+        public string? PricePerPerson { get; set; }
+
+        // Navigation properties for the one-to-many relationships
+
+        [Required]
+        public int HotalId { get; set; }
+        [ForeignKey("HotalId")]
+        public Hotel? Hotel { get; set; }
+
+        [Required]
         public int TravelId { get; set; }
+        [ForeignKey("TravelId")]
+        public Travel? Travel { get; set; }
 
-        [ForeignKey("Activities")] // This should be the correct foreign key property name for the relationship with the Activities entity
+        [Required]
         public int ActivitiesId { get; set; }
-
-        // Navigation properties (if needed)
-        public Admin_User AdminUser { get; set; }
-        public Hotel Hotel { get; set; }
-        public Travel Travel { get; set; }
-        public Activities Activities { get; set; }
+        [ForeignKey("ActivitiesId")]
+        public Activities? Activities { get; set; }
     }
 }

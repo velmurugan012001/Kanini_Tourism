@@ -9,7 +9,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<KaniniTourismDbContext>(optionsAction: options => options.UseSqlServer(builder.Configuration.GetConnectionString(name: "AdminSkill")));
+builder.Services.AddDbContext<KaniniTourismDbContext>
+    (
+    
+            optionsAction: options => options.UseSqlServer(builder.Configuration.GetConnectionString(name: "AdminSkill")
+            ));
 
 var app = builder.Build();
 

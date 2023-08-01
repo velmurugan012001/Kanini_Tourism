@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Http;
 
 namespace Kanini_Toursim.Model
 {
@@ -9,17 +8,20 @@ namespace Kanini_Toursim.Model
         [Key]
         public int AdminImgsId { get; set; }
 
-        [ForeignKey("Admin_User")]
+        [ForeignKey("User")]
         public int? Id { get; set; }
+        public Admin_User? User { get; set; }
 
-        public string LocationName { get; set; }
-        public string LocationDescription { get; set; }
-        public string ImageName { get; set; }
+        [Required(ErrorMessage = "LocationName is required.")]
+        public string? LocationName { get; set; }
 
-        [NotMapped]
-        public IFormFile ImageFile { get; set; }
+        [Required(ErrorMessage = "LocationDescription is required.")]
+        public string? LocationDescription { get; set; }
 
-        [NotMapped]
-        public string ImageSrc { get; set; }
+        [Required(ErrorMessage = "ImageName is required.")]
+        public string? ImageName { get; set; }
+        [NotMapped] 
+        [Required(ErrorMessage = "ImageFile is required.")]
+        public IFormFile? ImageFile { get; set; }
     }
 }
