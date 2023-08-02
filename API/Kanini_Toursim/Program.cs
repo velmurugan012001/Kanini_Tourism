@@ -3,17 +3,21 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Load configuration from appsettings.json
+builder.Configuration.AddJsonFile("appsettings.json");
 
+// Add services to the container.
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<KaniniTourismDbContext>
-    (
-    
-            optionsAction: options => options.UseSqlServer(builder.Configuration.GetConnectionString(name: "AdminSkill")
-            ));
+builder.Services.AddScoped<ITravelRepository, TravelRepository>();
+builder.Services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
+
+// Configure Entity Framework Core with the specified connection string
+builder.Services.AddDbContext<KaniniTourismDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectingDB")));
 
 var app = builder.Build();
 

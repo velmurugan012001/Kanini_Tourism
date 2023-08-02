@@ -24,14 +24,10 @@ namespace Kanini_Toursim.Model
         [MinLength(6, ErrorMessage = "Password must be at least 6 characters.")]
         public string? Password { get; set; }
 
-        public string? Token { get; set; }
-
         [Required(ErrorMessage = "Role is required.")]
         public string? Role { get; set; }
 
-        public DateTime? DOB { get; set; }
-
-        public string? Gender { get; set; }
+        public string? Address { get; set; }
 
         [RegularExpression(@"^[0-9]+$", ErrorMessage = "Phone must contain only digits.")]
         public long? Phone { get; set; }
@@ -39,14 +35,12 @@ namespace Kanini_Toursim.Model
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "AgencyName must contain only letters.")]
         public string? AgencyName { get; set; }
 
-        [NotMapped]
+        [NotMapped] // Exclude this property from database storage
         [Required(ErrorMessage = "Image File is required.")]
         public IFormFile? IDproof { get; set; }
+        public string? IDproofFileName { get; set; }
 
-        public string? RefreshToken { get; set; }
-
-        [Required(ErrorMessage = "RefreshTokenExpiryTime is required.")]
-        public DateTime RefreshTokenExpiryTime { get; set; }
+        public bool IsActive { get; set; }
 
         // Navigation properties (if needed)
         public ICollection<AdminImageGallery>? AdminImages { get; set; } = new List<AdminImageGallery>();
