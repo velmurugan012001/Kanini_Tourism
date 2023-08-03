@@ -20,12 +20,12 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="NavbarItems">
-        <div className="menu-icons" onClick={this.handleMenuIconClick}>
-          <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
-        </div>
         <div className="navbar-logo">
           <img src={logo} alt="Logo" />
           <span>Eagle Tourism</span>
+          <div className="menu-icons" onClick={this.handleMenuIconClick}>
+            <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
+          </div>
         </div>
         <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
           {Menu.map((item, index) => (
