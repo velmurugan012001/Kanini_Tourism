@@ -14,6 +14,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITravelRepository, TravelRepository>();
 builder.Services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
+builder.Services.AddScoped<IAdminImageGalleryRepository, AdminImageGalleryRepository>();
+builder.Services.AddScoped<IAdminUserRepository, AdminUserRepository>();
+builder.Services.AddScoped<IBillingDetailsRepository, BillingDetailsRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+builder.Services.AddScoped<ITravelRepository,TravelRepository>();
+builder.Services.AddScoped<IPackageRepository, PackageRepository>();
+
 
 // Configure Entity Framework Core with the specified connection string
 builder.Services.AddDbContext<KaniniTourismDbContext>(options =>
