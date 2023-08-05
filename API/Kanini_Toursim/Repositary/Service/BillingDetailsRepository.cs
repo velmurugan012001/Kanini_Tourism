@@ -36,12 +36,13 @@ public class BillingDetailsRepository : IBillingDetailsRepository
             return false;
 
         // Update properties accordingly
-        existingBillingDetails.BookingId = billingDetails.BookingId;
-        existingBillingDetails.PackageID = billingDetails.PackageID;
+        var booking = await _context.Bookings.FirstOrDefaultAsync(x => x.BookingId == existingBillingDetails.Booking.BookingId);
+        existingBillingDetails.PackageId = billingDetails.PackageId;
         existingBillingDetails.BillingDate = billingDetails.BillingDate;
         existingBillingDetails.BillingAmount = billingDetails.BillingAmount;
         existingBillingDetails.PaymentMethod = billingDetails.PaymentMethod;
         existingBillingDetails.BillingStatus = billingDetails.BillingStatus;
+        existingBillingDetails.Booking = booking;
         // Update other properties as needed
 
         await _context.SaveChangesAsync();

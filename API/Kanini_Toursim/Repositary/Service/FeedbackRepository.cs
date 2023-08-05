@@ -26,7 +26,7 @@ public class FeedbackRepository : IFeedbackRepository
     {
         _context.Feedback.Add(feedback);
         await _context.SaveChangesAsync();
-        return feedback.Id;
+        return feedback.FeedBackId;
     }
 
     public async Task<bool> UpdateFeedback(int id, Feedback feedback)
@@ -36,9 +36,7 @@ public class FeedbackRepository : IFeedbackRepository
             return false;
 
         // Update properties accordingly
-        existingFeedback.TravelerId = feedback.TravelerId;
-        existingFeedback.TripId = feedback.TripId;
-        existingFeedback.HotelId = feedback.HotelId;
+     
         existingFeedback.Rating = feedback.Rating;
         existingFeedback.Comments = feedback.Comments;
         // Update other properties as needed

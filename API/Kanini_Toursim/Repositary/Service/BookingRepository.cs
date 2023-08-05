@@ -36,8 +36,8 @@ public class BookingRepository : IBookingRepository
             return false;
 
         // Update properties accordingly
-        existingBooking.Id = booking.Id;
-        existingBooking.PackageID = booking.PackageID;
+        existingBooking.UserId = booking.UserId;
+        existingBooking.PackageId = booking.PackageId;
         existingBooking.DateOfTravel = booking.DateOfTravel;
         existingBooking.NumberOfPeople = booking.NumberOfPeople;
         existingBooking.TotalCost = booking.TotalCost;

@@ -26,7 +26,7 @@ public class AdminUserRepository : IAdminUserRepository
     {
         _context.AdminUsers.Add(adminUser);
         await _context.SaveChangesAsync();
-        return adminUser.Id;
+        return adminUser.UserId;
     }
 
     public async Task<bool> UpdateAdminUser(int id, Admin_User adminUser)

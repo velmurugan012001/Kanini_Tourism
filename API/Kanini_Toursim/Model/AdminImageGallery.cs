@@ -8,9 +8,9 @@ namespace Kanini_Toursim.Model
         [Key]
         public int AdminImgsId { get; set; }
 
-        [ForeignKey("User")]
-        public int? Id { get; set; }
-        public Admin_User? User { get; set; }
+   
+       
+        public Admin_User? UserId { get; set; }
 
         [Required(ErrorMessage = "LocationName is required.")]
         public string? LocationName { get; set; }
@@ -20,8 +20,8 @@ namespace Kanini_Toursim.Model
 
         [Required(ErrorMessage = "ImageName is required.")]
         public string? ImageName { get; set; }
-        [NotMapped] 
+      
         [Required(ErrorMessage = "ImageFile is required.")]
-        public IFormFile? ImageFile { get; set; }
+        public string? ImageFile { get; set; }
     }
 }

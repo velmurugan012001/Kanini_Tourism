@@ -7,16 +7,9 @@ namespace Kanini_Toursim.Model
     public class BillingDetails
     {
         [Key]
-        public int BillingId { get; set; }
-
-        [Required]
-        
-        public int BookingId { get; set; }
-        public Booking? Booking { get; set; }
-
+        public int BillingId { get; set; } 
        
-        public int? PackageID { get; set; }
-        public Package? Package { get; set; }
+        public Package? PackageId { get; set; }
 
         [Required]
         public DateTime BillingDate { get; set; }
@@ -29,6 +22,8 @@ namespace Kanini_Toursim.Model
         public string? PaymentMethod { get; set; }
 
         [Required]
-        public string BillingStatus { get; set; }
+        public string? BillingStatus { get; set; }
+
+        public Booking?  Booking { get; set; }
     }
 }

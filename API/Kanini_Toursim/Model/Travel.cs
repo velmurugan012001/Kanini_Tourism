@@ -12,10 +12,10 @@ namespace Kanini_Toursim.Model
         public string? VehicleType { get; set; }
 
         [Required]
-        public DateTime ToDate { get; set; }
+        public DateTime? ToDate { get; set; }
 
         [Required]
-        public DateTime FromDate { get; set; }
+        public DateTime? FromDate { get; set; }
 
         [Required]
         public string? Facilities { get; set; }

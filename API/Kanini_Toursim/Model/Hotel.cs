@@ -14,14 +14,14 @@ namespace Kanini_Toursim.Model
         [Required]
         public string? Place { get; set; }
 
-        [NotMapped]
+        
         [Required(ErrorMessage = "Image File is required.")]
-        public IFormFile? Image { get; set; }
+        public string? Image { get; set; }
 
         [Required]
-        public decimal FoodType { get; set; }
+        public decimal? FoodType { get; set; }
 
         [Required]
-        public decimal BedType { get; set; }
+        public decimal? BedType { get; set; }
     }
 }

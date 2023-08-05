@@ -47,10 +47,13 @@ public class PackageRepository : IPackageRepository
         existingPackage.Totaldays = package.Totaldays;
         existingPackage.ItineraryDetails = package.ItineraryDetails;
         existingPackage.PricePerPerson = package.PricePerPerson;
-        existingPackage.HotalId = package.HotalId;
-        existingPackage.TravelId = package.TravelId;
-        existingPackage.ActivitiesId = package.ActivitiesId;
         // Update other properties as needed
+
+        // Update the navigation properties instead of Ids
+        existingPackage.Hotel = package.Hotel; // Assuming 'Hotel' is the correct navigation property for the relationship with Hotel entity
+        existingPackage.Travel = package.Travel; // Assuming 'Travel' is the correct navigation property for the relationship with Travel entity
+        existingPackage.Activities = package.Activities; // Assuming 'Activities' is the correct navigation property for the relationship with Activities entity
+
 
         await _context.SaveChangesAsync();
         return true;

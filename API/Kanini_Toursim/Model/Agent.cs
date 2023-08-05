@@ -8,7 +8,7 @@ namespace Kanini_Toursim.Model
     public class Agent
     {
         [Key]
-        public int Id { get; set; }
+        public int AgentId { get; set; }
 
         [RegularExpression(@"^[a-zA-Z]+$")]
         public string? UserName { get; set; }
@@ -27,9 +27,9 @@ namespace Kanini_Toursim.Model
 
         public string? Role { get; set; }
 
-        [NotMapped]
+       
         [Required(ErrorMessage = "Image File is required.")]
-        public IFormFile? IDproof { get; set; }
+        public string? IDproof { get; set; }
 
         [RegularExpression(@"^[0-9]+$", ErrorMessage = "Invalid phone number.")]
         [Required(ErrorMessage = "Phone is required.")]

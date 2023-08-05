@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 
-namespace Kanini_Toursim.Model
+namespace Kanini_Toursim.Model 
 {
     public class Admin_User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [Required(ErrorMessage = "Username is required.")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Username must contain only letters.")]
@@ -35,12 +35,12 @@ namespace Kanini_Toursim.Model
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "AgencyName must contain only letters.")]
         public string? AgencyName { get; set; }
 
-        [NotMapped] // Exclude this property from database storage
+       
         [Required(ErrorMessage = "Image File is required.")]
-        public IFormFile? IDproof { get; set; }
+        public string? IDproof { get; set; }
         public string? IDproofFileName { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         // Navigation properties (if needed)
         public ICollection<AdminImageGallery>? AdminImages { get; set; } = new List<AdminImageGallery>();

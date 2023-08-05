@@ -21,6 +21,7 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 builder.Services.AddScoped<ITravelRepository,TravelRepository>();
 builder.Services.AddScoped<IPackageRepository, PackageRepository>();
+builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 
 
 // Configure Entity Framework Core with the specified connection string

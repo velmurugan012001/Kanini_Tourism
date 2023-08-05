@@ -36,7 +36,7 @@ public class AdminImageGalleryRepository : IAdminImageGalleryRepository
             return false;
 
         // Update properties accordingly
-        existingAdminImageGallery.Id = adminImageGallery.Id;
+        existingAdminImageGallery.UserId = adminImageGallery.UserId;
         existingAdminImageGallery.LocationName = adminImageGallery.LocationName;
         existingAdminImageGallery.LocationDescription = adminImageGallery.LocationDescription;
         existingAdminImageGallery.ImageName = adminImageGallery.ImageName;

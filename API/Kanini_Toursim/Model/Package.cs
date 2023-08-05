@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic; // Add this namespace for using ICollection<T>
+using System.ComponentModel.DataAnnotations;
 
 namespace Kanini_Toursim.Model
 {
@@ -7,11 +7,6 @@ namespace Kanini_Toursim.Model
     {
         [Key]
         public int? PackageID { get; set; }
-
-        // Foreign key for Admin_User
-        [ForeignKey("Admin_User")]
-        public int? Id { get; set; }
-        public Admin_User? Admin_User { get; set; }
 
         [Required]
         public string? OfferingType { get; set; }
@@ -23,13 +18,13 @@ namespace Kanini_Toursim.Model
         public string? Location { get; set; }
 
         [Required]
-        public int Days { get; set; }
+        public int? Days { get; set; }
 
         [Required]
-        public int Nights { get; set; }
+        public int? Nights { get; set; }
 
         [Required]
-        public int Totaldays { get; set; }
+        public int? Totaldays { get; set; }
 
         [Required]
         public string? ItineraryDetails { get; set; }
@@ -38,20 +33,11 @@ namespace Kanini_Toursim.Model
         public string? PricePerPerson { get; set; }
 
         // Navigation properties for the one-to-many relationships
-
-        [Required]
-        public int HotalId { get; set; }
-        [ForeignKey("HotalId")]
+        public Admin_User? User { get; set; }
         public Hotel? Hotel { get; set; }
-
-        [Required]
-        public int TravelId { get; set; }
-        [ForeignKey("TravelId")]
         public Travel? Travel { get; set; }
 
-        [Required]
-        public int ActivitiesId { get; set; }
-        [ForeignKey("ActivitiesId")]
-        public Activities? Activities { get; set; }
+        // Define a collection navigation property for the one-to-many relationship with Activities
+        public ICollection<Activities>? Activities { get; set; }
     }
 }

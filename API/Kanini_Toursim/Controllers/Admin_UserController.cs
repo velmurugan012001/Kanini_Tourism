@@ -46,7 +46,7 @@ namespace Kanini_Toursim.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAdmin_User(int id, Admin_User admin_User)
         {
-            if (id != admin_User.Id)
+            if (id != admin_User.UserId)
             {
                 return BadRequest();
             }

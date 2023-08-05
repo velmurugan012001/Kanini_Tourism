@@ -46,7 +46,7 @@ namespace Kanini_Toursim.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFeedback(int id, Feedback feedback)
         {
-            if (id != feedback.Id)
+            if (id != feedback.FeedBackId)
             {
                 return BadRequest();
             }
