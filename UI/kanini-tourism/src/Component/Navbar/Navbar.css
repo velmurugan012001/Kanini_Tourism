@@ -1,6 +1,10 @@
 /* Navbar.css */
 
 .NavbarItems {
+  position: fixed; /* Add position fixed */
+  top: 0; /* Stick it to the top */
+  left: 0; /* Stick it to the left */
+  z-index: 100; /* Set a higher z-index to make sure it stays above other content */
   display: flex;
   justify-content: space-between;
   align-items: center;

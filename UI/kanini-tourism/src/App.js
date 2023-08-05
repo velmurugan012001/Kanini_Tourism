@@ -1,11 +1,11 @@
 import './App.css';
 import Navbar from '../src/Component/Navbar/Navbar';
 import { Routes, Route } from "react-router-dom";
-import Home from './Component/Home/Home';
-import About from './Component/About/About';
+import Home from './Component/Router/Home';
+import About from './Component/Router/About';
 import Contact from './Component/Home/Contact';
-import Package from './Component/Package/Package';
-import Booking from './Component/Booking/Booking';
+import Package from './Component/Router/Package';
+import Booking from './Component/Router/Booking';
 import Signup from './Component/Signup/Signup';
 
 function App() {
