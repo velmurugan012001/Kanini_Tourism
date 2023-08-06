@@ -1,72 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
-import cardpg1 from "../../Assect/i1.jpg";
-import cardpg2 from "../../Assect/i2.jpg";
-import cardpg3 from "../../Assect/p1.png";
-import cardpg4 from "../../Assect/p2.jpg";
+import Carousel from 'react-bootstrap/Carousel';
+import img1 from './../../Assect/bg1.jpg';
+import img2 from './../../Assect/bg2.jpg';
+import img3 from './../../Assect/bg1.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const images = [
-  'https://www.visitsaudi.com/content/dam/no-dynamic-media-folder/manifest-newarticles-batch1/11-10-instagram-worthy-sunset-spots-in-saudi/10instagram-worthysunsetspotsinsaudi_card_7.jpg',
-  'https://www.visitsaudi.com/content/dam/no-dynamic-media-folder/manifest-newarticles-batch1/11-10-instagram-worthy-sunset-spots-in-saudi/10instagram-worthysunsetspotsinsaudi_card_6.jpg',
-  'https://scth.scene7.com/is/image/scth/Summer%20packages%20landing_1920x1080:crop-1160x650?defaultImage=Summer%20packages%20landing_1920x1080&wid=1456&hei=815',
-  // Add more image URLs as needed
-];
 
-const tourismInfo = [
-  {
-    title: 'Tour Package 1',
-    description: 'Explore the scenic beauty with our amazing tour package.',
-    image: cardpg1,
-  },
-  {
-    title: 'Tour Package 2',
-    description: 'Experience adventure and culture with our exciting tour package.',
-    image: cardpg2,
-  },
-  {
-    title: 'Tour Package 3',
-    description: 'Discover hidden gems with our unique tour package.',
-    image: cardpg3,
-  },
-  {
-    title: 'Tour Package 4',
-    description: 'Relax and unwind with our luxury tour package.',
-    image: cardpg4,
-  },
-];
+
 
 export default function Homepage() {
-  const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change slide every 5 seconds
 
-    return () => clearInterval(interval);
-  }, []);
-
+ 
   return (
     <div className='homepage-container'>
-      <div className='background-image-container'>
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`homeimg ${index === activeIndex ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${image})` }}
-          />
-        ))}
-        <p1>Welcome to our Tourism Website</p1>
-      </div>
-      <div className='cards'>
-        {tourismInfo.map((info, index) => (
-          <div key={index} className='card'>
-            <img className='card-image' src={info.image} alt='Tour Package' />
-            <h3>{info.title}</h3>
-            <p>{info.description}</p>
-          </div>
-        ))}
-      </div>
+     <Carousel interval={3000} /* Auto slide every 3 seconds */>
+        <Carousel.Item>
+          <img className="d-block w-100" src={img1} alt="First slide" />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={img2} alt="Second slide" />
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={img3} alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+
       <div className='tourism-info'>
         <h2>About Tourism</h2>
         <p>

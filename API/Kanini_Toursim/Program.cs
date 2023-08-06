@@ -23,8 +23,15 @@ builder.Services.AddScoped<ITravelRepository,TravelRepository>();
 builder.Services.AddScoped<IPackageRepository, PackageRepository>();
 builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 
-
-// Configure Entity Framework Core with the specified connection string
+builder.Services.AddCors(op =>
+{
+    op.AddPolicy("MyCorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});// Configure Entity Framework Core with the specified connection string
 builder.Services.AddDbContext<KaniniTourismDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectingDB")));
 
@@ -36,6 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("MyCorsPolicy");
 
 app.UseHttpsRedirection();
 

@@ -66,7 +66,14 @@ namespace Kanini_Toursim.Controllers
         public async Task<IActionResult> PostAdmin_User(Admin_User admin_User)
         {
             var id = await _repository.CreateAdminUser(admin_User);
-            return CreatedAtAction("GetAdmin_User", new { id = id }, admin_User);
+            return CreatedAtAction(nameof(GetAdmin_User), new { id = id }, admin_User);
+        }
+
+        [HttpPost("New")]
+        public async Task<ActionResult<Admin_User>> PostCourse([FromForm] Admin_User user, IFormFile imageFile)
+        {
+            var createdUser = await _repository.UserAsync(user, imageFile);
+            return CreatedAtAction(nameof(GetAdmin_User), new { id = createdUser.UserId }, createdUser);
         }
 
         // DELETE: api/Admin_User/5

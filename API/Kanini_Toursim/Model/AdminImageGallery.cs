@@ -7,9 +7,6 @@ namespace Kanini_Toursim.Model
     {
         [Key]
         public int AdminImgsId { get; set; }
-
-   
-       
         public Admin_User? UserId { get; set; }
 
         [Required(ErrorMessage = "LocationName is required.")]

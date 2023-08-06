@@ -13,6 +13,7 @@
   width: 100%;
   height: 80px; /* You can adjust the height to your preference */
   border-radius: 13px;
+  background-color: #fff;
 }
 
 .navbar-logo {

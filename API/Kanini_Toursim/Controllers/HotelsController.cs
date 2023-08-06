@@ -68,6 +68,13 @@ namespace Kanini_Toursim.Controllers
             return CreatedAtAction("GetHotel", new { id = id }, hotel);
         }
 
+        [HttpPost("New")]
+        public async Task<ActionResult<Hotel>> PostCourse([FromForm] Hotel hotel, IFormFile imageFile)
+        {
+            var createdHotel = await _repository.HotelAsync(hotel, imageFile);
+            return CreatedAtAction(nameof(GetHotel), new { id = createdHotel.HotalId }, createdHotel);
+        }
+
         // DELETE: api/Hotels/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotel(int id)

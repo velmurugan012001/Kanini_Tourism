@@ -69,6 +69,13 @@ namespace Kanini_Toursim.Controllers
             return CreatedAtAction("GetAdminImageGallery", new { id = id }, adminImageGallery);
         }
 
+        [HttpPost("New")]
+        public async Task<ActionResult<AdminImageGallery>> PostCourse([FromForm] AdminImageGallery adminImage, IFormFile imageFile)
+        {
+            var createdAdminImage = await _repository.AdminImageAsync(adminImage, imageFile);
+            return CreatedAtAction(nameof(GetAdminImageGallery), new { id = createdAdminImage.AdminImgsId }, createdAdminImage);
+        }
+
         // DELETE: api/AdminImageGalleries/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAdminImageGallery(int id)

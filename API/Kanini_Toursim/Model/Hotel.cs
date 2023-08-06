@@ -19,9 +19,9 @@ namespace Kanini_Toursim.Model
         public string? Image { get; set; }
 
         [Required]
-        public decimal? FoodType { get; set; }
+        public string? FoodType { get; set; }
 
         [Required]
-        public decimal? BedType { get; set; }
+        public string? BedType { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kanini_Toursim.Model;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 public class FeedbackRepository : IFeedbackRepository
@@ -55,4 +56,5 @@ public class FeedbackRepository : IFeedbackRepository
         await _context.SaveChangesAsync();
         return true;
     }
+
 }
