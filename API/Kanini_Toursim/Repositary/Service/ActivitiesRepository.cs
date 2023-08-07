@@ -26,8 +26,9 @@ public class ActivitiesRepository : IActivitiesRepository
     {
         _context.Activities.Add(activity);
         await _context.SaveChangesAsync();
-        return activity.ActivitiesId;
+        return activity.ActivitiesId; // Change 'ActivityId' to 'ActivitiesId'
     }
+
 
     public async Task<bool> UpdateActivity(int id, Activities activity)
     {

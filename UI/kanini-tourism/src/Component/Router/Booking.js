@@ -1,9 +1,10 @@
 import React from 'react'
+import Addpackage from '../Addpackage/Addpackage'
 
 export default function Booking() {
   return (
     <div>
-      <p>booking</p>
+      <Addpackage></Addpackage>
     </div>
   )
 }

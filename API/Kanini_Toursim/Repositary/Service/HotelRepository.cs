@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kanini_Toursim.Model;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 public class HotelRepository : IHotelRepository
 {
@@ -20,7 +23,7 @@ public class HotelRepository : IHotelRepository
         return await _context.Hotels.ToListAsync();
     }
 
-    public async Task<Hotel?> GetHotelById(int id)
+    public async Task<Hotel> GetHotelById(int id)
     {
         return await _context.Hotels.FindAsync(id);
     }
@@ -80,15 +83,15 @@ public class HotelRepository : IHotelRepository
             hotel.Image = fileName;
 
             _context.Hotels.Add(hotel);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return hotel;
         }
         catch (Exception ex)
         {
-
-            throw new Exception("Error occurred while posting the room.", ex);
+            // Handle the exception appropriately, you can log it or throw it back
+            // You can also return null or throw a custom exception if needed
+            throw new Exception("Error occurred while saving the hotel data.", ex);
         }
-
     }
 }

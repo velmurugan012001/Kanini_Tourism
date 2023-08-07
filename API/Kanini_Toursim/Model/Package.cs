@@ -32,6 +32,8 @@ namespace Kanini_Toursim.Model
         [Required]
         public string? PricePerPerson { get; set; }
 
+
+
         // Navigation properties for the one-to-many relationships
         public Admin_User? User { get; set; }
         public Hotel? Hotel { get; set; }

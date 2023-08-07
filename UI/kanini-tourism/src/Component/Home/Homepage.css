@@ -1,16 +1,49 @@
+/* Homepage.css */
 
-  .tourism-info {
-    padding: 20px;
-  }
-  
-  .tourism-info h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .tourism-info p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-   
+
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 39rem;
+  left: 15%;
+  padding: 1.25rem 0;
+  color: #fff;
+  text-align: center;
+
+}
+
+.carousel-caption h3 {
+  color: #fefefe;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.carousel-caption p {
+  color: #fff;
+  font-size: 16px;
+}
+.tourism-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.tourism-info h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.tourism-info p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.tourism-info p:last-child {
+  margin-bottom: 0;
+}

@@ -3,7 +3,7 @@ import './Homepage.css';
 import Carousel from 'react-bootstrap/Carousel';
 import img1 from './../../Assect/bg1.jpg';
 import img2 from './../../Assect/bg2.jpg';
-import img3 from './../../Assect/bg1.jpg';
+import img3 from './../../Assect/bg3.webp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -12,15 +12,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Homepage() {
 
 
- 
   return (
     <div className='homepage-container'>
-     <Carousel interval={3000} /* Auto slide every 3 seconds */>
+     <Carousel interval={2000} /* Auto slide every 3 seconds */>
         <Carousel.Item>
           <img className="d-block w-100" src={img1} alt="First slide" />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>Traveling is the only thing</h3>
+                 <h3> you can buy that makes you richer.</h3>
+            <p>
+    . Discover the beauty of the world and create lasting memories with our exceptional tourism services.
+  </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -33,8 +35,8 @@ export default function Homepage() {
         <Carousel.Item>
           <img className="d-block w-100" src={img3} alt="Third slide" />
           <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <h3>Plan your next journey with us and embark on an unforgettable adventure</h3>
+            <p>create lasting memories with our exceptional tourism services..</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

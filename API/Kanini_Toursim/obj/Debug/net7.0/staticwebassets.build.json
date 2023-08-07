@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IerKux6M2+pfxpMlpiBjqoHWbx4XRRarN8xqN8aCUE4=",
+  "Hash": "3EEasaSiI7HQ7VEWqwlbOr+pfhAPqmVnc5GtBSAOl9U=",
   "Source": "Kanini_Toursim",
   "BasePath": "_content/Kanini_Toursim",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\bc7071eb-ec99-487f-b046-5d105a177afa.jpg"
+    },
+    {
+      "Identity": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\c18d48ff-fc3b-45e3-85f8-d02d116794f2.jpeg",
+      "SourceId": "Kanini_Toursim",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\",
+      "BasePath": "_content/Kanini_Toursim",
+      "RelativePath": "uploads/c18d48ff-fc3b-45e3-85f8-d02d116794f2.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\c18d48ff-fc3b-45e3-85f8-d02d116794f2.jpeg"
     },
     {
       "Identity": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\e362b40d-555e-46f2-bffb-2b91502db3df.png",

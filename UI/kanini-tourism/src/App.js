@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../src/Component/Navbar/Navbar';
 import { Routes, Route } from "react-router-dom";
 import Home from './Component/Router/Home';
@@ -18,6 +19,7 @@ function App() {
         <Route path='/package' element={<Package />} />
         <Route path='/booking' element={<Booking />} />
         <Route path='/signup' element={<Signup />} />
+        
       </Routes>
 
       <Navbar />
