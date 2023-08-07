@@ -1,37 +1,34 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Kanini_Toursim.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Kanini_Toursim.Model;
+using System.Collections.Generic;
 
 namespace Kanini_Toursim.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PackagesController : ControllerBase
+    public class PackageController : ControllerBase
     {
-        private readonly IPackageRepository _repository;
+        private readonly IPackageRepository _packageRepository;
 
-        public PackagesController(IPackageRepository repository)
+        public PackageController(IPackageRepository packageRepository)
         {
-            _repository = repository;
+            _packageRepository = packageRepository;
         }
 
-        // GET: api/Packages
+        // GET: api/Package
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Package>>> GetPackages()
+        public ActionResult<IEnumerable<Package>> GetAllPackages()
         {
-            var packages = await _repository.GetAllPackages();
+            var packages = _packageRepository.GetAllPackages();
             return Ok(packages);
         }
 
-        // GET: api/Packages/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Package>> GetPackage(int? id)
+        // GET: api/Package/5
+        [HttpGet("{packageId}")]
+        public ActionResult<Package> GetPackageById(int packageId)
         {
-            var package = await _repository.GetPackageById(id);
+            var package = _packageRepository.GetPackageById(packageId);
+
             if (package == null)
             {
                 return NotFound();
@@ -40,44 +37,49 @@ namespace Kanini_Toursim.Controllers
             return Ok(package);
         }
 
-        // PUT: api/Packages/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPackage(int? id, Package package)
+        // POST: api/Package
+        [HttpPost]
+        public ActionResult AddPackage([FromBody] Package package)
         {
-            if (id != package.PackageID)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
-            var success = await _repository.UpdatePackage(id, package);
-            if (!success)
+            _packageRepository.AddPackage(package);
+            return CreatedAtAction(nameof(GetPackageById), new { packageId = package.PackageID }, package);
+        }
+
+        // PUT: api/Package/5
+        [HttpPut("{packageId}")]
+        public IActionResult UpdatePackage(int packageId, [FromBody] Package updatedPackage)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var package = _packageRepository.GetPackageById(packageId);
+            if (package == null)
             {
                 return NotFound();
             }
 
+            _packageRepository.UpdatePackage(packageId, updatedPackage);
             return NoContent();
         }
 
-        // POST: api/Packages
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<IActionResult> PostPackage(Package package)
+        // DELETE: api/Package/5
+        [HttpDelete("{packageId}")]
+        public IActionResult DeletePackage(int packageId)
         {
-            var id = await _repository.CreatePackage(package);
-            return CreatedAtAction("GetPackage", new { id = id }, package);
-        }
-
-        // DELETE: api/Packages/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePackage(int? id)
-        {
-            var success = await _repository.DeletePackage(id);
-            if (!success)
+            var package = _packageRepository.GetPackageById(packageId);
+            if (package == null)
             {
                 return NotFound();
             }
 
+            _packageRepository.DeletePackage(packageId);
             return NoContent();
         }
     }

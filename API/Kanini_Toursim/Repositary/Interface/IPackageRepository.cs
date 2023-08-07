@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Kanini_Toursim.Model;
+﻿using System;
+using System.Collections.Generic;
 
-public interface IPackageRepository
+namespace Kanini_Toursim.Model
 {
-    Task<IEnumerable<Package>> GetAllPackages();
-    Task<Package> GetPackageById(int? id);
-    Task<int> CreatePackage(Package package);
-    Task<bool> UpdatePackage(int? id, Package package);
-    Task<bool> DeletePackage(int? id);
+    public interface IPackageRepository
+    {
+        IEnumerable<Package> GetAllPackages();
+        Package GetPackageById(int packageId);
+        void AddPackage(Package package);
+        void UpdatePackage(int packageId, Package updatedPackage);
+        void DeletePackage(int packageId);
+    }
 }

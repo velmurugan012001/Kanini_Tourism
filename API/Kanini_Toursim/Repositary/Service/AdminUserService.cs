@@ -1,99 +1,129 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Kanini_Toursim.Model;
-using Microsoft.AspNetCore.Hosting;
+﻿using Kanini_Toursim.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using Travel.Models;
+using Travel.Repository.Interface;
 
-
-public class AdminUserRepository : IAdminUserRepository
+namespace Travel.Repository.Services
 {
-    private readonly KaniniTourismDbContext _context;
-    private readonly IWebHostEnvironment _webHostEnvironment;
-
-    public AdminUserRepository(KaniniTourismDbContext context, IWebHostEnvironment webHostEnvironment)
+    public class UsersServices : IAdminUseService
     {
-        _context = context;
-        _webHostEnvironment = webHostEnvironment;
-    }
+        private readonly KaniniTourismDbContext _context;
 
-    public async Task<IEnumerable<Admin_User>> GetAllAdminUsers()
-    {
-        return await _context.AdminUsers.ToListAsync();
-    }
-
-    public async Task<Admin_User?> GetAdminUserById(int id)
-    {
-        return await _context.AdminUsers.FindAsync(id);
-    }
-
-    public async Task<int> CreateAdminUser(Admin_User adminUser)
-    {
-        _context.AdminUsers.Add(adminUser);
-        await _context.SaveChangesAsync();
-        return adminUser.UserId;
-    }
-
-    public async Task<bool> UpdateAdminUser(int id, Admin_User adminUser)
-    {
-        var existingAdminUser = await _context.AdminUsers.FindAsync(id);
-        if (existingAdminUser == null)
-            return false;
-
-        // Update properties accordingly
-        existingAdminUser.Username = adminUser.Username;
-        existingAdminUser.Email = adminUser.Email;
-        existingAdminUser.Password = adminUser.Password;
-        existingAdminUser.Role = adminUser.Role;
-        existingAdminUser.Address = adminUser.Address;
-        existingAdminUser.Phone = adminUser.Phone;
-        existingAdminUser.AgencyName = adminUser.AgencyName;
-        existingAdminUser.IDproofFileName = adminUser.IDproofFileName;
-        // Update other properties as needed
-
-        await _context.SaveChangesAsync();
-        return true;
-    }
-
-    public async Task<bool> DeleteAdminUser(int id)
-    {
-        var adminUser = await _context.AdminUsers.FindAsync(id);
-        if (adminUser == null)
-            return false;
-
-        _context.AdminUsers.Remove(adminUser);
-        await _context.SaveChangesAsync();
-        return true;
-    }
-
-    public async Task<Admin_User> UserAsync(Admin_User user, IFormFile imageFile)
-    {
-        if (imageFile == null || imageFile.Length == 0)
+        public UsersServices(KaniniTourismDbContext context)
         {
-            throw new ArgumentException("Invalid file");
+            _context = context;
         }
 
-        var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
-        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-        var filePath = Path.Combine(uploadsFolder, fileName);
-        try
+        public async Task<Admin_User> AddUser(Admin_User user)
         {
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await imageFile.CopyToAsync(stream);
-            }
-
-            user.IDproof = fileName;
-            
             _context.AdminUsers.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return user;
         }
-        catch (Exception ex)
-        {
 
-            throw new Exception("Error occurred while posting the room.", ex);
+        public async Task<IEnumerable<Admin_User>> GetAllUsers()
+        {
+            var users = await _context.AdminUsers.ToListAsync();
+            return users;
         }
 
+        public async Task<Admin_User> GetUserById(int userId)
+        {
+            return await _context.AdminUsers.FirstOrDefaultAsync(u => u.UserId == userId);
+        }
+
+        public async Task UpdateUser(Admin_User user)
+        {
+            _context.AdminUsers.Update(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteUser(Admin_User user)
+        {
+            _context.AdminUsers.Remove(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Admin_User> GetUserByEmail(string email)
+        {
+            return await _context.AdminUsers.FirstOrDefaultAsync(u => u.EmailId == email);
+        }
+
+        public async Task<IEnumerable<Admin_User>> GetPendingUsers()
+        {
+            var pendingUsers = await _context.AdminUsers.Where(u => u.IsActive == false).ToListAsync();
+            return pendingUsers;
+        }
+
+        private string Encrypt(string password)
+        {
+            // Example key and IV generation using hashing
+            string passphrase = "your-passphrase";
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] key = sha256.ComputeHash(Encoding.UTF8.GetBytes(passphrase));
+                byte[] iv = sha256.ComputeHash(Encoding.UTF8.GetBytes(passphrase)).Take(16).ToArray();
+
+                using (Aes aes = Aes.Create())
+                {
+                    aes.Key = key;
+                    aes.IV = iv;
+
+                    ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                        {
+                            using (StreamWriter writer = new StreamWriter(cryptoStream))
+                            {
+                                writer.Write(password);
+                            }
+                        }
+
+                        byte[] encryptedData = memoryStream.ToArray();
+                        return Convert.ToBase64String(encryptedData);
+                    }
+                }
+            }
+        }
+
+        private string Decrypt(string encryptedPassword)
+        {
+            // Example key and IV generation using hashing
+            string passphrase = "your-passphrase";
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] key = sha256.ComputeHash(Encoding.UTF8.GetBytes(passphrase));
+                byte[] iv = sha256.ComputeHash(Encoding.UTF8.GetBytes(passphrase)).Take(16).ToArray();
+
+                using (Aes aes = Aes.Create())
+                {
+                    aes.Key = key;
+                    aes.IV = iv;
+
+                    ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+                    byte[] encryptedData = Convert.FromBase64String(encryptedPassword);
+
+                    using (MemoryStream memoryStream = new MemoryStream(encryptedData))
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                        {
+                            using (StreamReader reader = new StreamReader(cryptoStream))
+                            {
+                                return reader.ReadToEnd();
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

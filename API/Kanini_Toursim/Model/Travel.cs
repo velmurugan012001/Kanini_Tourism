@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Kanini_Toursim.Model
@@ -24,3 +24,4 @@ namespace Kanini_Toursim.Model
         public string? Itinerary { get; set; }
     }
 }
+*/

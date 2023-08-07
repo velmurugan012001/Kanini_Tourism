@@ -8,6 +8,7 @@ import Contact from './Component/Home/Contact';
 import Package from './Component/Router/Package';
 import Booking from './Component/Router/Booking';
 import Signup from './Component/Signup/Signup';
+import RegistrationPage from './Component/Register/Register';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path='/package' element={<Package />} />
         <Route path='/booking' element={<Booking />} />
         <Route path='/signup' element={<Signup />} />
-        
+        <Route path='/register' element={<RegistrationPage />} />
       </Routes>
 
       <Navbar />

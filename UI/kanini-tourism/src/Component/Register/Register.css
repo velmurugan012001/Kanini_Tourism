@@ -1,0 +1,42 @@
+.registration-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+  .registration-container {
+    padding: 40px 0;
+  }
+  .tourism-image {
+    width: 100%; /* Increase the image size */
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .MuiOutlinedInput-notchedOutline {
+    border-color: #007bff;
+  }
+  
+  .MuiOutlinedInput-focused {
+    box-shadow: 0 0 4px #007bff;
+  }
+  
+  .MuiButton-containedPrimary {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 20px;
+  }
+  
+  .MuiButton-containedPrimary:hover {
+    background-color: #0056b3;
+  }
+  
+  #texfield{
+    width: 500px;
+   
+  }
+  .registration-form{
+    /* padding-left: 30%; */
+    text-align: center;
+    border-radius: 10px;
+  }

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿/*using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kanini_Toursim.Model
@@ -24,3 +24,4 @@ namespace Kanini_Toursim.Model
 
     }
 }
+*/

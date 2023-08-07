@@ -1,5 +1,7 @@
 using Kanini_Toursim.Model;
 using Microsoft.EntityFrameworkCore;
+using Travel.Repository.Interface;
+using Travel.Repository.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,14 +14,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ITravelRepository, TravelRepository>();
-builder.Services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
+//builder.Services.AddScoped<ITravelRepository, TravelRepository>();
+//builder.Services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
 builder.Services.AddScoped<IAdminImageGalleryRepository, AdminImageGalleryRepository>();
-builder.Services.AddScoped<IAdminUserRepository, AdminUserRepository>();
+builder.Services.AddScoped< IAdminUseService, UsersServices> ();
 builder.Services.AddScoped<IBillingDetailsRepository, BillingDetailsRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
-builder.Services.AddScoped<IHotelRepository, HotelRepository>();
-builder.Services.AddScoped<ITravelRepository,TravelRepository>();
+//builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+//builder.Services.AddScoped<ITravelRepository,TravelRepository>();
 builder.Services.AddScoped<IPackageRepository, PackageRepository>();
 builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 

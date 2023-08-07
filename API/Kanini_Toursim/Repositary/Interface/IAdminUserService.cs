@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Kanini_Toursim.Model;
-using Microsoft.AspNetCore.Mvc;
+﻿using Travel.Models;
 
-public interface IAdminUserRepository
+namespace Travel.Repository.Interface
 {
-    Task<IEnumerable<Admin_User>> GetAllAdminUsers();
-    Task<Admin_User> UserAsync([FromForm] Admin_User user, IFormFile imageFile);
-    Task<Admin_User?> GetAdminUserById(int id);
-    Task<int> CreateAdminUser(Admin_User adminUser);
-    Task<bool> UpdateAdminUser(int id, Admin_User adminUser);
-    Task<bool> DeleteAdminUser(int id);
+    public interface IAdminUseService
+    {
+        Task<Admin_User> AddUser(Admin_User user);
+        Task<IEnumerable<Admin_User>> GetAllUsers();
+        Task<Admin_User> GetUserByEmail(string email);
+        Task<Admin_User> GetUserById(int userId);
+        Task<IEnumerable<Admin_User>> GetPendingUsers();
+        Task DeleteUser(Admin_User user);
+
+        Task UpdateUser(Admin_User user);
+    }
 }

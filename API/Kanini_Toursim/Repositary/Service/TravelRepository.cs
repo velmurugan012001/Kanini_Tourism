@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kanini_Toursim.Model;
 using Microsoft.EntityFrameworkCore;
@@ -58,3 +58,4 @@ public class TravelRepository : ITravelRepository
         return true;
     }
 }
+*/

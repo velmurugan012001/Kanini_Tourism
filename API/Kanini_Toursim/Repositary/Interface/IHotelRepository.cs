@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kanini_Toursim.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -13,3 +13,4 @@ public interface IHotelRepository
     Task<bool> UpdateHotel(int id, Hotel hotel);
     Task<bool> DeleteHotel(int id);
 }
+*/

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Kanini_Toursim.Migrations
 {
     /// <inheritdoc />
-    public partial class r : Migration
+    public partial class Loj : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,16 +17,15 @@ namespace Kanini_Toursim.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone = table.Column<long>(type: "bigint", nullable: true),
-                    AgencyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IDproof = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IDproofFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true)
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id_Proof = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,40 +51,6 @@ namespace Kanini_Toursim.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agents", x => x.AgentId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Hotels",
-                columns: table => new
-                {
-                    HotalId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Place = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FoodType = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    BedType = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Hotels", x => x.HotalId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Travels",
-                columns: table => new
-                {
-                    TravelId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    VehicleType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ToDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FromDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Facilities = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Itinerary = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Travels", x => x.TravelId);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,50 +111,31 @@ namespace Kanini_Toursim.Migrations
                     Totaldays = table.Column<int>(type: "int", nullable: false),
                     ItineraryDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PricePerPerson = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    HotelHotalId = table.Column<int>(type: "int", nullable: true),
-                    TravelId = table.Column<int>(type: "int", nullable: true)
+                    HotelName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HotelPlace = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HotelImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FoodType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BedType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VehicleType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ToDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FromDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Facilities = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Itinerary = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActivitiesName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    ActivitiesImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Admin_UserUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Packages", x => x.PackageID);
                     table.ForeignKey(
-                        name: "FK_Packages_AdminUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Packages_AdminUsers_Admin_UserUserId",
+                        column: x => x.Admin_UserUserId,
                         principalTable: "AdminUsers",
                         principalColumn: "UserId");
-                    table.ForeignKey(
-                        name: "FK_Packages_Hotels_HotelHotalId",
-                        column: x => x.HotelHotalId,
-                        principalTable: "Hotels",
-                        principalColumn: "HotalId");
-                    table.ForeignKey(
-                        name: "FK_Packages_Travels_TravelId",
-                        column: x => x.TravelId,
-                        principalTable: "Travels",
-                        principalColumn: "TravelId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Activities",
-                columns: table => new
-                {
-                    ActivitiesId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Duration = table.Column<int>(type: "int", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PackageID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Activities", x => x.ActivitiesId);
-                    table.ForeignKey(
-                        name: "FK_Activities_Packages_PackageID",
-                        column: x => x.PackageID,
-                        principalTable: "Packages",
-                        principalColumn: "PackageID");
                 });
 
             migrationBuilder.CreateTable(
@@ -248,11 +194,6 @@ namespace Kanini_Toursim.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Activities_PackageID",
-                table: "Activities",
-                column: "PackageID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AdminImageGalleries_UserId1",
                 table: "AdminImageGalleries",
                 column: "UserId1");
@@ -283,27 +224,14 @@ namespace Kanini_Toursim.Migrations
                 column: "UserId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Packages_HotelHotalId",
+                name: "IX_Packages_Admin_UserUserId",
                 table: "Packages",
-                column: "HotelHotalId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Packages_TravelId",
-                table: "Packages",
-                column: "TravelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Packages_UserId",
-                table: "Packages",
-                column: "UserId");
+                column: "Admin_UserUserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Activities");
-
             migrationBuilder.DropTable(
                 name: "AdminImageGalleries");
 
@@ -324,12 +252,6 @@ namespace Kanini_Toursim.Migrations
 
             migrationBuilder.DropTable(
                 name: "AdminUsers");
-
-            migrationBuilder.DropTable(
-                name: "Hotels");
-
-            migrationBuilder.DropTable(
-                name: "Travels");
         }
     }
 }

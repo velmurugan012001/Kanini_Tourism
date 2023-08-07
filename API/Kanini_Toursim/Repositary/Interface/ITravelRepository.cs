@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kanini_Toursim.Model;
 
@@ -10,3 +10,4 @@ public interface ITravelRepository
     Task<bool> UpdateTravel(int id, Travel travel);
     Task<bool> DeleteTravel(int id);
 }
+*/

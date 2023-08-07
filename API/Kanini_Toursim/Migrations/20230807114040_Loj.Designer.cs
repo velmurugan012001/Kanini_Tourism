@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kanini_Toursim.Migrations
 {
     [DbContext(typeof(KaniniTourismDbContext))]
-    [Migration("20230805081603_r")]
-    partial class r
+    [Migration("20230807114040_Loj")]
+    partial class Loj
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,40 +24,6 @@ namespace Kanini_Toursim.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Kanini_Toursim.Model.Activities", b =>
-                {
-                    b.Property<int>("ActivitiesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActivitiesId"));
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int?>("Duration")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("PackageID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ActivitiesId");
-
-                    b.HasIndex("PackageID");
-
-                    b.ToTable("Activities");
-                });
 
             modelBuilder.Entity("Kanini_Toursim.Model.AdminImageGallery", b =>
                 {
@@ -91,54 +57,6 @@ namespace Kanini_Toursim.Migrations
                     b.HasIndex("UserId1");
 
                     b.ToTable("AdminImageGalleries");
-                });
-
-            modelBuilder.Entity("Kanini_Toursim.Model.Admin_User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AgencyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IDproof")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IDproofFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("Phone")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("AdminUsers");
                 });
 
             modelBuilder.Entity("Kanini_Toursim.Model.Agent", b =>
@@ -288,39 +206,6 @@ namespace Kanini_Toursim.Migrations
                     b.ToTable("Feedback");
                 });
 
-            modelBuilder.Entity("Kanini_Toursim.Model.Hotel", b =>
-                {
-                    b.Property<int>("HotalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotalId"));
-
-                    b.Property<decimal?>("BedType")
-                        .IsRequired()
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("FoodType")
-                        .IsRequired()
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Place")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HotalId");
-
-                    b.ToTable("Hotels");
-                });
-
             modelBuilder.Entity("Kanini_Toursim.Model.Package", b =>
                 {
                     b.Property<int?>("PackageID")
@@ -329,16 +214,64 @@ namespace Kanini_Toursim.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("PackageID"));
 
+                    b.Property<string>("ActivitiesImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ActivitiesName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("Admin_UserUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BedType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("Days")
                         .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Destination")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("HotelHotalId")
+                    b.Property<int?>("Duration")
+                        .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<string>("Facilities")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FoodType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("FromDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("HotelImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotelName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotelPlace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Itinerary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ItineraryDetails")
                         .IsRequired()
@@ -360,71 +293,74 @@ namespace Kanini_Toursim.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("ToDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("Totaldays")
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("TravelId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PackageID");
-
-                    b.HasIndex("HotelHotalId");
-
-                    b.HasIndex("TravelId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Packages");
-                });
-
-            modelBuilder.Entity("Kanini_Toursim.Model.Travel", b =>
-                {
-                    b.Property<int>("TravelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TravelId"));
-
-                    b.Property<string>("Facilities")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("FromDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Itinerary")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ToDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("VehicleType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TravelId");
+                    b.HasKey("PackageID");
 
-                    b.ToTable("Travels");
+                    b.HasIndex("Admin_UserUserId");
+
+                    b.ToTable("Packages");
                 });
 
-            modelBuilder.Entity("Kanini_Toursim.Model.Activities", b =>
+            modelBuilder.Entity("Travel.Models.Admin_User", b =>
                 {
-                    b.HasOne("Kanini_Toursim.Model.Package", null)
-                        .WithMany("Activities")
-                        .HasForeignKey("PackageID");
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id_Proof")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("AdminUsers");
                 });
 
             modelBuilder.Entity("Kanini_Toursim.Model.AdminImageGallery", b =>
                 {
-                    b.HasOne("Kanini_Toursim.Model.Admin_User", "UserId")
-                        .WithMany("AdminImages")
+                    b.HasOne("Travel.Models.Admin_User", "UserId")
+                        .WithMany("ImageGallaries")
                         .HasForeignKey("UserId1");
 
                     b.Navigation("UserId");
@@ -451,8 +387,8 @@ namespace Kanini_Toursim.Migrations
                         .WithMany()
                         .HasForeignKey("PackageID");
 
-                    b.HasOne("Kanini_Toursim.Model.Admin_User", "UserId")
-                        .WithMany("Books")
+                    b.HasOne("Travel.Models.Admin_User", "UserId")
+                        .WithMany("BookingTrips")
                         .HasForeignKey("UserId1");
 
                     b.Navigation("PackageId");
@@ -462,8 +398,8 @@ namespace Kanini_Toursim.Migrations
 
             modelBuilder.Entity("Kanini_Toursim.Model.Feedback", b =>
                 {
-                    b.HasOne("Kanini_Toursim.Model.Admin_User", "UserId")
-                        .WithMany()
+                    b.HasOne("Travel.Models.Admin_User", "UserId")
+                        .WithMany("Feedbacks")
                         .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -473,37 +409,20 @@ namespace Kanini_Toursim.Migrations
 
             modelBuilder.Entity("Kanini_Toursim.Model.Package", b =>
                 {
-                    b.HasOne("Kanini_Toursim.Model.Hotel", "Hotel")
-                        .WithMany()
-                        .HasForeignKey("HotelHotalId");
-
-                    b.HasOne("Kanini_Toursim.Model.Travel", "Travel")
-                        .WithMany()
-                        .HasForeignKey("TravelId");
-
-                    b.HasOne("Kanini_Toursim.Model.Admin_User", "User")
+                    b.HasOne("Travel.Models.Admin_User", null)
                         .WithMany("Packages")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Hotel");
-
-                    b.Navigation("Travel");
-
-                    b.Navigation("User");
+                        .HasForeignKey("Admin_UserUserId");
                 });
 
-            modelBuilder.Entity("Kanini_Toursim.Model.Admin_User", b =>
+            modelBuilder.Entity("Travel.Models.Admin_User", b =>
                 {
-                    b.Navigation("AdminImages");
+                    b.Navigation("BookingTrips");
 
-                    b.Navigation("Books");
+                    b.Navigation("Feedbacks");
+
+                    b.Navigation("ImageGallaries");
 
                     b.Navigation("Packages");
-                });
-
-            modelBuilder.Entity("Kanini_Toursim.Model.Package", b =>
-                {
-                    b.Navigation("Activities");
                 });
 #pragma warning restore 612, 618
         }
