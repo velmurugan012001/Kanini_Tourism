@@ -3,13 +3,14 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './PackagePage.css'; // Import the custom CSS file
 import Carousel from 'react-bootstrap/Carousel';
-import img1 from './../../Assect/bg1.jpg';
-import img2 from './../../Assect/bg2.jpg';
-import img3 from './../../Assect/bg1.jpg';
+import img1 from './../../Assect/i9.jpg';
+import img2 from './../../Assect/i5.webp';
+import img3 from './../../Assect/p9.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ActivitiesPopup from './ActivitiesPopup';
 import HotelPopup from './HotelPopup';
 import TravelPopup from './DisTravelPopup';
+import { Link } from 'react-router-dom';
 
 function Package() {
   const [packages, setPackages] = useState([]);
@@ -55,21 +56,21 @@ function Package() {
         <Carousel.Item>
           <img className="d-block w-100" src={img1} alt="First slide" />
           <Carousel.Caption>
-            <h3>First slide label</h3>
+            <h3>Jobs fill your pocket, but adventures fill your soul.</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={img2} alt="Second slide" />
           <Carousel.Caption>
-            <h3>Second slide label</h3>
+            <h3>Live your life by a compass not a clock</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={img3} alt="Third slide" />
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            <h3>Life is either a daring adventure or nothing at all.</h3>
             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -78,7 +79,7 @@ function Package() {
       <div className="row">
         {packages.map((pkg) => (
           <div key={pkg.id} className="col">
-            <Card className="custom-card" style={{ width: '80rem', height: '40rem' }}>
+            <Card className="custom-card" style={{ width: '40rem', height: '40rem' }}>
             <Card.Img variant="top" src={pkg.imageSrc} style={{ width: '18rem' }} />
   <Card.Body className="custom-card-body">
     <Card.Title className="custom-card-title">{pkg.title}</Card.Title>
@@ -106,9 +107,10 @@ function Package() {
                 </ListGroup.Item>
               </ListGroup>
               <Card.Body>
-    <Card.Link href="#" className="custom-card-link">
-      Price Per Person: {pkg.pricePerPerson}
-    </Card.Link>
+              <Card.Link as={Link} to={`/BookingDetails/${pkg.id}`} className="custom-card-link">
+  Price Per Person: {pkg.pricePerPerson}
+  <p>Book Now</p>
+</Card.Link>
   </Card.Body>
             </Card>
           </div>

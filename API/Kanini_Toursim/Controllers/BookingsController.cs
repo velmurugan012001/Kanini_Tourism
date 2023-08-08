@@ -11,75 +11,54 @@ namespace Kanini_Toursim.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookingsController : ControllerBase
+    public class TripBookingsController : ControllerBase
     {
-        private readonly IBookingRepository _repository;
+        private readonly IBookingRepository _context;
 
-        public BookingsController(IBookingRepository repository)
+        public TripBookingsController(IBookingRepository context)
         {
-            _repository = repository;
+            _context = context;
         }
 
-        // GET: api/Bookings
+        // GET: api/TripBookings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
+        public async Task<ActionResult<List<IBookingRepository>>> GetTripBookings()
         {
-            var bookings = await _repository.GetAllBookings();
-            return Ok(bookings);
+            try
+            {
+                return Ok(await _context.GetTripBookings());
+            }
+            catch (ArithmeticException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
-        // GET: api/Bookings/5
+        // GET: api/TripBookings/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Booking>> GetBooking(int id)
+        public async Task<ActionResult<IBookingRepository>> GetTripBooking(int id)
         {
-            var booking = await _repository.GetBookingById(id);
-            if (booking == null)
+            try
             {
-                return NotFound();
+                return Ok(await _context.GetTripBooking(id));
             }
-
-            return Ok(booking);
+            catch (ArithmeticException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
-        // PUT: api/Bookings/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBooking(int id, Booking booking)
-        {
-            if (id != booking.BookingId)
-            {
-                return BadRequest();
-            }
 
-            var success = await _repository.UpdateBooking(id, booking);
-            if (!success)
-            {
-                return NotFound();
-            }
 
-            return NoContent();
-        }
-
-        // POST: api/Bookings
+        // POST: api/TripBookings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<IActionResult> PostBooking(Booking booking)
+        public async Task<ActionResult<Booking>> PostTripBooking(Booking tripBooking)
         {
-            var id = await _repository.CreateBooking(booking);
-            return CreatedAtAction("GetBooking", new { id = id }, booking);
+            return await _context.PostTripBooking(tripBooking);
+
         }
 
-        // DELETE: api/Bookings/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBooking(int id)
-        {
-            var success = await _repository.DeleteBooking(id);
-            if (!success)
-            {
-                return NotFound();
-            }
 
-            return NoContent();
-        }
     }
 }

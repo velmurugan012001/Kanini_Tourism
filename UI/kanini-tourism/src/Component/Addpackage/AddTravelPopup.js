@@ -46,7 +46,7 @@ const TravelPopup = ({ show, handleClose, travel, onSave }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Travel Details</Modal.Title>
+        <Modal.Title className="Typography1">Travel Details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -107,8 +107,8 @@ const TravelPopup = ({ show, handleClose, travel, onSave }) => {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleSubmit}>
-          Save Changes
+        <Button variant="success" onClick={handleSubmit}>
+          Save
         </Button>
       </Modal.Footer>
     </Modal>

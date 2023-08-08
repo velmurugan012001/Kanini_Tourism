@@ -6,31 +6,17 @@
   .registration-container {
     padding: 40px 0;
   }
-  .tourism-image {
-    width: 100%; /* Increase the image size */
-    height: 100%;
-    display: block;
-    margin: 0 auto;
+  .Container1 {
+    background-image: url();
+    margin-bottom: 22%;
+
+  
+    border-radius: 112px;
+    border: 3px solid rgba(0, 0, 0, 0.12);
+   
   }
   
-  .MuiOutlinedInput-notchedOutline {
-    border-color: #007bff;
-  }
-  
-  .MuiOutlinedInput-focused {
-    box-shadow: 0 0 4px #007bff;
-  }
-  
-  .MuiButton-containedPrimary {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 20px;
-  }
-  
-  .MuiButton-containedPrimary:hover {
-    background-color: #0056b3;
-  }
-  
+
   #texfield{
     width: 500px;
    
@@ -39,4 +25,33 @@
     /* padding-left: 30%; */
     text-align: center;
     border-radius: 10px;
+  }
+  .tourism-image {
+    width: 135%; /* Increase the image size */
+    height: 130%;
+    display: block;
+    margin-top: 20%;
+    
+  }
+  .Typography3 {
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 2.125rem;
+    line-height: 1.235;
+    letter-spacing: 0.00735em;
+    margin-bottom: 0.35em;
+    color: black;
+  }
+   
+  .bgimg1 {
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
   }

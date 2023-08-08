@@ -35,7 +35,7 @@ public class ImageGallaryServices : IImageGallary
         try
         {
             string imageName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "AdminImage", imageName);
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "uploads", imageName);
 
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
@@ -60,7 +60,7 @@ public class ImageGallaryServices : IImageGallary
             var imageList = new List<AdminImageGallery>();
             foreach (var image in images)
             {
-                var filePath = Path.Combine(_hostEnvironment.WebRootPath, "AdminImage", image.ImagePath);
+                var filePath = Path.Combine(_hostEnvironment.WebRootPath, "uploads", image.ImagePath);
 
                 if (File.Exists(filePath))
                 {
@@ -95,7 +95,7 @@ public class ImageGallaryServices : IImageGallary
                 return null;
             }
 
-            var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "AdminImage");
+            var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "uploads");
             var filePath = Path.Combine(uploadsFolder, byid.ImagePath);
 
             var imageBytes = await File.ReadAllBytesAsync(filePath);
@@ -178,7 +178,7 @@ public class ImageGallaryServices : IImageGallary
     {
         try
         {
-            var filePath = Path.Combine(_hostEnvironment.WebRootPath, "AdminImage", imagePath);
+            var filePath = Path.Combine(_hostEnvironment.WebRootPath, "uploads", imagePath);
 
             if (File.Exists(filePath))
             {

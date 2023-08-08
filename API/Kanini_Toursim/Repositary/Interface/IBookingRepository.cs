@@ -4,9 +4,8 @@ using Kanini_Toursim.Model;
 
 public interface IBookingRepository
 {
-    Task<IEnumerable<Booking>> GetAllBookings();
-    Task<Booking?> GetBookingById(int id);
-    Task<int> CreateBooking(Booking booking);
-    Task<bool> UpdateBooking(int id, Booking booking);
-    Task<bool> DeleteBooking(int id);
+    public Task<List<Booking>> GetTripBookings();
+    public Task<Booking> GetTripBooking(int id);
+    public Task<Booking> PostTripBooking(Booking tripBooking);
+
 }

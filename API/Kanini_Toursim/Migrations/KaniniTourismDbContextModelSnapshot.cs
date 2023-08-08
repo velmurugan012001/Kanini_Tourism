@@ -24,34 +24,24 @@ namespace Kanini_Toursim.Migrations
 
             modelBuilder.Entity("Kanini_Toursim.Model.AdminImageGallery", b =>
                 {
-                    b.Property<int>("AdminImgsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminImgsId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ImageFile")
-                        .IsRequired()
+                    b.Property<string>("ImageDetails")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageName")
-                        .IsRequired()
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LocationDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocationName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UserId1")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("AdminImgsId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("AdminImageGalleries");
                 });
@@ -119,7 +109,7 @@ namespace Kanini_Toursim.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BookingId")
+                    b.Property<int?>("BookingTripId")
                         .HasColumnType("int");
 
                     b.Property<int?>("PackageID")
@@ -131,7 +121,7 @@ namespace Kanini_Toursim.Migrations
 
                     b.HasKey("BillingId");
 
-                    b.HasIndex("BookingId");
+                    b.HasIndex("BookingTripId");
 
                     b.HasIndex("PackageID");
 
@@ -140,35 +130,45 @@ namespace Kanini_Toursim.Migrations
 
             modelBuilder.Entity("Kanini_Toursim.Model.Booking", b =>
                 {
-                    b.Property<int>("BookingId")
+                    b.Property<int>("BookingTripId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingTripId"));
 
-                    b.Property<DateTime?>("DateOfTravel")
-                        .IsRequired()
+                    b.Property<long?>("ContactNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateOfBooking")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DateOfTheTrip")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("NumberOfPeople")
-                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("PackageID")
+                    b.Property<int?>("PackageId")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("TotalCost")
-                        .IsRequired()
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<decimal?>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("UserId1")
+                    b.Property<string>("TripType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("BookingId");
+                    b.HasKey("BookingTripId");
 
-                    b.HasIndex("PackageID");
+                    b.HasIndex("PackageId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Bookings");
                 });
@@ -356,18 +356,18 @@ namespace Kanini_Toursim.Migrations
 
             modelBuilder.Entity("Kanini_Toursim.Model.AdminImageGallery", b =>
                 {
-                    b.HasOne("Travel.Models.Admin_User", "UserId")
+                    b.HasOne("Travel.Models.Admin_User", "User")
                         .WithMany("ImageGallaries")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("UserId");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Kanini_Toursim.Model.BillingDetails", b =>
                 {
                     b.HasOne("Kanini_Toursim.Model.Booking", "Booking")
                         .WithMany()
-                        .HasForeignKey("BookingId");
+                        .HasForeignKey("BookingTripId");
 
                     b.HasOne("Kanini_Toursim.Model.Package", "PackageId")
                         .WithMany()
@@ -380,17 +380,17 @@ namespace Kanini_Toursim.Migrations
 
             modelBuilder.Entity("Kanini_Toursim.Model.Booking", b =>
                 {
-                    b.HasOne("Kanini_Toursim.Model.Package", "PackageId")
+                    b.HasOne("Kanini_Toursim.Model.Package", "Package")
                         .WithMany()
-                        .HasForeignKey("PackageID");
+                        .HasForeignKey("PackageId");
 
-                    b.HasOne("Travel.Models.Admin_User", "UserId")
+                    b.HasOne("Travel.Models.Admin_User", "User")
                         .WithMany("BookingTrips")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("PackageId");
+                    b.Navigation("Package");
 
-                    b.Navigation("UserId");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Kanini_Toursim.Model.Feedback", b =>

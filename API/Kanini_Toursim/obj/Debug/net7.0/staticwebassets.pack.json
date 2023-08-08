@@ -1,8 +1,16 @@
 {
   "Files": [
     {
+      "Id": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\4b14af8c-e5f4-4a48-97c9-089d4e47c405.jpg",
+      "PackagePath": "staticwebassets\\uploads\\4b14af8c-e5f4-4a48-97c9-089d4e47c405.jpg"
+    },
+    {
       "Id": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\53305933-3b2b-4a57-a793-eb333a526d24.jpg",
       "PackagePath": "staticwebassets\\uploads\\53305933-3b2b-4a57-a793-eb333a526d24.jpg"
+    },
+    {
+      "Id": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\73a9156f-2e70-434c-98eb-537df4a80548.jpg",
+      "PackagePath": "staticwebassets\\uploads\\73a9156f-2e70-434c-98eb-537df4a80548.jpg"
     },
     {
       "Id": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\778d3438-b512-413c-b54f-c6d4cbdedc89.png",
@@ -15,6 +23,10 @@
     {
       "Id": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\bc7071eb-ec99-487f-b046-5d105a177afa.jpg",
       "PackagePath": "staticwebassets\\uploads\\bc7071eb-ec99-487f-b046-5d105a177afa.jpg"
+    },
+    {
+      "Id": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\c13c3446-e5f6-4ef1-a0d1-91d6af4f6546.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\c13c3446-e5f6-4ef1-a0d1-91d6af4f6546.jpeg"
     },
     {
       "Id": "F:\\kanini\\project\\Kanini Tourism\\Kanini_Tourism\\API\\Kanini_Toursim\\wwwroot\\uploads\\c18d48ff-fc3b-45e3-85f8-d02d116794f2.jpeg",

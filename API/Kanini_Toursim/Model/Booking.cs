@@ -8,22 +8,31 @@ namespace Kanini_Toursim.Model
     public class Booking
     {
         [Key]
-        public int BookingId { get; set; }
+        public int BookingTripId { get; set; }
 
-        [Required]
-        public DateTime? DateOfTravel { get; set; }
+        public int? UserId { get; set; }
 
-        [Required]
-        [Range(1, int.MaxValue, ErrorMessage = "Number of people must be at least 1.")]
+        public int? PackageId { get; set; }
+
+
+        public string Name { get; set; } = null!;
+
         public int? NumberOfPeople { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal? TotalCost { get; set; }
+        public string? TripType { get; set; }
 
-        // Navigation properties (if needed)
-        public Admin_User? UserId { get; set; }
-        public Package? PackageId { get; set; }
-       
+        public long? ContactNumber { get; set; }
+
+        public DateTime DateOfTheTrip { get; set; }
+
+        public decimal? TotalAmount { get; set; }
+
+        public DateTime? DateOfBooking { get; set; }
+
+
+
+        public virtual Package? Package { get; set; }
+
+        public virtual Admin_User? User { get; set; }
     }
 }

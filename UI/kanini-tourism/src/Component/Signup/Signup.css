@@ -1,9 +1,9 @@
 /* Login.css */
 
 .Container {
-    background-color: #f50f0f;
+    margin-bottom: 22%;
     color: rgba(0, 0, 0, 0.87);
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: box-shadow 300ms cubic-bezier(9, 8, 9.2, 1) 0ms;
     border-radius: 112px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     overflow: hidden;
@@ -19,12 +19,19 @@
     margin-bottom: 0.35em;
   }
   
-  .button {
-    background-color: aqua;
+  .Typography2 {
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 200;
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: 0.00735em;
+    margin-bottom: 0.35em;
   }
   
   .bgimg {
-    background-image: url(./../../Assect/bg1.jpg);
+    padding-top: 5%;
+    background-image: url(./../../Assect/p5.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,12 +42,13 @@
   }
   
   .welcome {
-    padding: 5%;
+   
     text-align: center;
     color: white;
     font-size: 3rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 30px;
+    margin-top: 600px;
+    margin-left: 500px;
     font-family: 'Arial', sans-serif;
   }
   

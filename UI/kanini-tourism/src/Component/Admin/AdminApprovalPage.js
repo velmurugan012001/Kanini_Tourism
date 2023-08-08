@@ -8,9 +8,17 @@ import { TableHead } from '@mui/material';
 import { TableRow } from '@mui/material';
 import { Paper } from '@mui/material';
 import axios from 'axios';
- 
+import './AdminApprovel.css'
+import Carousel from 'react-bootstrap/Carousel';
+import img1 from './../../Assect/bg1.jpg';
+import img2 from './../../Assect/bg2.jpg';
+import img3 from './../../Assect/bg3.webp';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
+
 const AdminApprovalPage = () => {
   const [pendingUsers, setPendingUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPendingUsers();
@@ -43,8 +51,39 @@ const AdminApprovalPage = () => {
     }
   };
 
+  const handleUploadGallery = () => {
+    // Use the navigate function to redirect to the adminImageGallery page
+    navigate('/AdminImageGallery');
+  };
+
   return (
     <div>
+       <Carousel interval={2000} /* Auto slide every 3 seconds */>
+        <Carousel.Item>
+          <img className="d-block w-100" src={img1} alt="First slide" />
+          <Carousel.Caption>
+            <h3>Traveling is the only thing</h3>
+                 <h3> you can buy that makes you richer.</h3>
+            <p>
+    . Discover the beauty of the world and create lasting memories with our exceptional tourism services.
+  </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={img2} alt="Second slide" />
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={img3} alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Plan your next journey with us and embark on an unforgettable adventure</h3>
+            <p>create lasting memories with our exceptional tourism services..</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
       <h2>Pending Users</h2>
       <TableContainer component={Paper}>
         <Table>
@@ -74,7 +113,12 @@ const AdminApprovalPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Button variant="contained" color="secondary" onClick={handleUploadGallery}>
+      Upload Gallery
+    </Button>
     </div>
+    
   );
 };
 

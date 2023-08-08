@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu } from "../Menu/Menu";
+import { Link } from "react-router-dom";
 import logo from "./logo.png";
 import "./Navbar.css";
 
@@ -17,7 +17,36 @@ class Navbar extends Component {
     }));
   };
 
+  handleLogout = () => {
+    // Clear the token from local storage
+    localStorage.removeItem('token');
+    // alert('Logged out successfully');
+  };
+
   render() {
+    const { token } = this.props;
+    const navItems = [];
+    if (token) {
+      if (token.role === 'user') {
+        navItems.push(
+          { label: 'Home', path: '/Home', cName: 'nav-links' },
+          { label: 'Travel Package', path: '/Package', cName: 'nav-links' }
+        );
+      } else if (token.role === 'agent') {
+        navItems.push(
+          { label: 'Home', path: '/Home', cName: 'nav-links' },
+          { label: 'Add Package', path: '/Booking', cName: 'nav-links' },
+          { label: 'Travel Package', path: '/Package', cName: 'nav-links' }
+        );
+      } else if (token.role === 'admin') {
+        navItems.push(
+          { label: 'Admin', path: '/Admin', cName: 'nav-links' },
+          { label: 'Home', path: '/Home', cName: 'nav-links' },
+          { label: 'Add Package', path: '/Booking', cName: 'nav-links' },
+          { label: 'Travel Package', path: '/Package', cName: 'nav-links' }
+        );
+      }
+    }
     return (
       <nav className="NavbarItems">
         <div className="navbar-logo">
@@ -28,14 +57,20 @@ class Navbar extends Component {
           </div>
         </div>
         <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
-          {Menu.map((item, index) => (
+          {navItems.map((item, index) => (
             <li key={index}>
-              <a className={item.cName} href={item.url}>
-                <i className={item.icon}></i>
-                {item.title}
-              </a>
+              <Link className={item.cName} to={item.path}>
+                {item.label} {item.icon}
+              </Link>
             </li>
           ))}
+          {token && (
+            <li className="logout">
+              <Link to="/" onClick={this.handleLogout}>
+                Log Out 
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     );

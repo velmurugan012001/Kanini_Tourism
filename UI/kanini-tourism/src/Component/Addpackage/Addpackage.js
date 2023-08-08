@@ -11,6 +11,7 @@ import img2 from './../../Assect/bg2.jpg';
 import img3 from './../../Assect/bg1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import './Addpackage.css'
 
 export default function Addpackage() {
   
@@ -156,34 +157,12 @@ const handleTravelSave = (editedTravel) => {
     }));
   };
   return (
-    <div>
-      <Carousel interval={3000} /* Auto slide every 3 seconds */>
-        <Carousel.Item>
-          <img className="d-block w-100" src={img1} alt="First slide" />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={img2} alt="Second slide" />
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={img3} alt="Third slide" />
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+    <div className='bgimg2'>
+      
 
-      <Card className="custom-card" style={{ width: '20rem' }}>
+      <Card className="custom-card" style={{ width: '30rem' }}>
         <Card.Body className="custom-card-body">
-          <Card.Title className="custom-card-title">Add Package</Card.Title>
+          <Card.Title className="Typography1">Add Package</Card.Title>
           <Form>
             <Form.Group controlId="location">
               <Form.Label>Location</Form.Label>
@@ -266,7 +245,7 @@ const handleTravelSave = (editedTravel) => {
                 value={formData.pricePerPerson}
                 onChange={handleChange}
               />
-            </Form.Group>
+            </Form.Group><br></br>
  {/* Buttons to open popups */}
  <Button variant="secondary" onClick={() => handleHotelPopup()}>Hotel Details</Button>
     <Button variant="secondary" onClick={() => handleTravelPopup()}>Travel Details</Button>
@@ -297,7 +276,7 @@ const handleTravelSave = (editedTravel) => {
       />
 
             {/* Add more form fields for other properties as needed */}
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
+            <Button variant="success" type="submit" onClick={handleSubmit} className="centered-button">
               Submit
             </Button>
           </Form>

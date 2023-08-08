@@ -1,9 +1,10 @@
 import React from 'react'//rfc shortcut
+import Countact from './../About/Countact';
 
 export default function About() {
   return (
     <div>
-      <p>About</p>
+      <Countact></Countact>
     </div>
   )
 }

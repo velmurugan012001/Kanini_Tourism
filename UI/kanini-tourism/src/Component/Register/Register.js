@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Typography, TextField, Grid, MenuItem } from '@mui/material';
+import { Button, Typography, TextField, Grid, MenuItem, Container } from '@mui/material';
 import axios from 'axios';
-import Tourismimage from './../../Assect/bg3.webp';
+import Tourismimage from './../../Assect/a5.avif';
 import './Register.css';
  
 import { useNavigate } from 'react-router-dom';  
@@ -68,7 +68,7 @@ const RegistrationPage = () => {
           navigate('/'); // Change this route to your home page route
         } else if (formData.role === 'agent') {
           alert('Registration successful! Wait for admin approval.');
-          navigate('/signup'); // Change this route to your "wait for approval" page route
+          navigate('/'); // Change this route to your "wait for approval" page route
         }
             } catch (error) {
         console.error('Registration error:', error.response ? error.response.data : error.message);
@@ -97,15 +97,15 @@ const RegistrationPage = () => {
       isValid = false;
     }
 
-    if (formData.password.trim() === '') {
-        setPasswordError('Password is required');
-        isValid = false;
-      } else if (!isValidPassword(formData.password)) {
-        setPasswordError(
-          'Password must be at least 8 characters and contain letters, numbers, and special characters'
-        );
-        isValid = false;
-      }  
+//     if (formData.password.trim() === '') {
+//     setPasswordError('Password is required');
+//     isValid = false;
+//   } else if (!isValidPassword(formData.password)) {
+//     setPasswordError(
+//       'Password must be at least 8 characters and contain letters, numbers, and special characters'
+//     );
+//     isValid = false;
+//   }  
     if (formData.address.trim() === '') {
       setAddressError('Address is required');
       isValid = false;
@@ -129,20 +129,25 @@ const RegistrationPage = () => {
     return emailPattern.test(email);
   };
 
-  const isValidPassword = (password) => {
-    const passwordPattern = /^(?=.[A-Za-z])(?=.\d)(?=.[@$!%#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-    return passwordPattern.test(password);
-  };
+//   const isValidPassword = (password) => {
+//     const passwordPattern = /^(?=.[A-Za-z])(?=.\d)(?=.[@$!%#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+//     return passwordPattern.test(password);
+//   };
 
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    <div className='bgimg1'>
       <Grid item xs={12} md={6}>
         <img src={Tourismimage} alt="Tourism" className="tourism-image" />
       </Grid>
+            <Container className='Container1' maxWidth="md" style={{ textAlign: 'center', marginTop: '445px' }}>
+
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    
 
       <Grid item xs={12} md={6}>
         <Typography variant="h4" gutterBottom className="registration-header">
-          User Registration
+        <p className='Typography3'>
+           Registration</p>
         </Typography>
         <div className="registration-form">
           <form onSubmit={handleSubmit}>
@@ -314,6 +319,8 @@ const RegistrationPage = () => {
         </div>
       </Grid>
     </Grid>
+    </Container>
+    </div>
   );
 };
 

@@ -1,0 +1,35 @@
+.bgimg2 {
+    padding-top: 5%;
+    background-image: url(./../../Assect/i8.avif);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10%;
+  }
+  /* Add this CSS to your component's CSS file or a global stylesheet */
+
+    
+    .modal-content {
+      border-radius: 50px;
+    }
+  
+    .modal-header {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  
+    .modal-body {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  
+  /* Add this CSS to your component's CSS file or a global stylesheet */
+.centered-button {
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+  }
+  

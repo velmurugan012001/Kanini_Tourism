@@ -5,56 +5,27 @@ using Microsoft.EntityFrameworkCore;
 
 public class BookingRepository : IBookingRepository
 {
-    private readonly KaniniTourismDbContext _context;
+    private readonly KaniniTourismDbContext _dbcontext;
 
-    public BookingRepository(KaniniTourismDbContext context)
+    public BookingRepository(KaniniTourismDbContext dbcontext)
     {
-        _context = context;
+        _dbcontext = dbcontext;
     }
 
-    public async Task<IEnumerable<Booking>> GetAllBookings()
+    public async Task<List<Booking>> GetTripBookings()
     {
-        return await _context.Bookings.ToListAsync();
+        return await _dbcontext.Bookings.ToListAsync();
     }
 
-    public async Task<Booking?> GetBookingById(int id)
+    public async Task<Booking> GetTripBooking(int id)
     {
-        return await _context.Bookings.FindAsync(id);
+        return await _dbcontext.Bookings.FindAsync(id);
     }
 
-    public async Task<int> CreateBooking(Booking booking)
+    public async Task<Booking> PostTripBooking(Booking tripBooking)
     {
-        _context.Bookings.Add(booking);
-        await _context.SaveChangesAsync();
-        return booking.BookingId;
-    }
-
-    public async Task<bool> UpdateBooking(int id, Booking booking)
-    {
-        var existingBooking = await _context.Bookings.FindAsync(id);
-        if (existingBooking == null)
-            return false;
-
-        // Update properties accordingly
-        existingBooking.UserId = booking.UserId;
-        existingBooking.PackageId = booking.PackageId;
-        existingBooking.DateOfTravel = booking.DateOfTravel;
-        existingBooking.NumberOfPeople = booking.NumberOfPeople;
-        existingBooking.TotalCost = booking.TotalCost;
-        // Update other properties as needed
-
-        await _context.SaveChangesAsync();
-        return true;
-    }
-
-    public async Task<bool> DeleteBooking(int id)
-    {
-        var booking = await _context.Bookings.FindAsync(id);
-        if (booking == null)
-            return false;
-
-        _context.Bookings.Remove(booking);
-        await _context.SaveChangesAsync();
-        return true;
+        var addedBooking = await _dbcontext.Bookings.AddAsync(tripBooking);
+        await _dbcontext.SaveChangesAsync();
+        return addedBooking.Entity;
     }
 }

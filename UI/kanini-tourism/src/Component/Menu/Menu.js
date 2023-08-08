@@ -1,7 +1,7 @@
 export const Menu = [
     {
       title: "Home",
-      url: "/",
+      url: "/Home",
       cName: "nav-links",
       icon: "fa-solid fa-house-chimney",
     },
@@ -31,9 +31,15 @@ export const Menu = [
     },
     {
       title: "Signup",
-      url: "/signup",
+      url: "/",
       cName: "nav-links",
-      cName: "fa-solid fa-right-to-bracket",
+      icon: "fa-solid fa-right-to-bracket",
     },
+    // {
+    //   title: "LogOut",
+    //   url: "/logout",
+    //   cName: "nav-links",
+    //   cName: "fa-solid fa-right-to-bracket",
+    // },
   ];
   

@@ -36,7 +36,7 @@ public class BillingDetailsRepository : IBillingDetailsRepository
             return false;
 
         // Update properties accordingly
-        var booking = await _context.Bookings.FirstOrDefaultAsync(x => x.BookingId == existingBillingDetails.Booking.BookingId);
+        var booking = await _context.Bookings.FirstOrDefaultAsync(x => x.BookingTripId == existingBillingDetails.Booking.BookingTripId);
         existingBillingDetails.PackageId = billingDetails.PackageId;
         existingBillingDetails.BillingDate = billingDetails.BillingDate;
         existingBillingDetails.BillingAmount = billingDetails.BillingAmount;

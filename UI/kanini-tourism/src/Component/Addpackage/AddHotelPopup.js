@@ -53,7 +53,7 @@ const HotelPopup = ({ show, handleClose, hotel ,onSave}) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Hotel Details</Modal.Title>
+        <Modal.Title className="Typography1">Hotel Details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -112,8 +112,8 @@ const HotelPopup = ({ show, handleClose, hotel ,onSave}) => {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleSubmit}>
-          Save Changes
+        <Button variant="success" onClick={handleSubmit}>
+          Save
         </Button>
       </Modal.Footer>
     </Modal>

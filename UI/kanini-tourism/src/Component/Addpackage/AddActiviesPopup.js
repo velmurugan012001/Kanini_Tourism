@@ -60,7 +60,7 @@ const ActivitiesPopup = ({ show, handleClose, activity ,onSave }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Activity Details</Modal.Title>
+        <Modal.Title className="Typography1">Activity Details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -101,8 +101,8 @@ const ActivitiesPopup = ({ show, handleClose, activity ,onSave }) => {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleSubmit}>
-          Save Changes
+        <Button variant="success" onClick={handleSubmit}>
+          Save
         </Button>
       </Modal.Footer>
     </Modal>
