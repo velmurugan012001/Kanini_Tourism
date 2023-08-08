@@ -98,9 +98,14 @@ const RegistrationPage = () => {
     }
 
     if (formData.password.trim() === '') {
-      setPasswordError('Password is required');
-      isValid = false;
-    }  
+        setPasswordError('Password is required');
+        isValid = false;
+      } else if (!isValidPassword(formData.password)) {
+        setPasswordError(
+          'Password must be at least 8 characters and contain letters, numbers, and special characters'
+        );
+        isValid = false;
+      }  
     if (formData.address.trim() === '') {
       setAddressError('Address is required');
       isValid = false;

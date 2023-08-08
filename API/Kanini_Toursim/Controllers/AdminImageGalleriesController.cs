@@ -1,92 +1,121 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Kanini_Toursim.Model;
+using Kanini_Toursim.Repositary;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Kanini_Toursim.Model;
+using System.IO;
+using Travel.Models;
+using Travel.Repository.Interface;
 
-namespace Kanini_Toursim.Controllers
+namespace Travel.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminImageGalleriesController : ControllerBase
+    public class ImageGallaryController : ControllerBase
     {
-        private readonly IAdminImageGalleryRepository _repository;
+        private readonly IImageGallary _context;
 
-        public AdminImageGalleriesController(IAdminImageGalleryRepository repository)
+        public ImageGallaryController(IImageGallary context)
         {
-            _repository = repository;
+            _context = context;
         }
 
-        // GET: api/AdminImageGalleries
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<AdminImageGallery>>> GetAdminImageGalleries()
+        [HttpPost("AllAdminColumn")]
+        public async Task<ActionResult<List<AdminImageGallery>>> Postall([FromForm] FileModel aiu)
         {
-            var adminImageGalleries = await _repository.GetAllAdminImageGalleries();
-            return Ok(adminImageGalleries);
-        }
-
-        // GET: api/AdminImageGalleries/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<AdminImageGallery>> GetAdminImageGallery(int id)
-        {
-            var adminImageGallery = await _repository.GetAdminImageGalleryById(id);
-            if (adminImageGallery == null)
+            try
             {
-                return NotFound();
+                return await _context.Postall(aiu);
             }
-
-            return Ok(adminImageGallery);
-        }
-
-        // PUT: api/AdminImageGalleries/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdminImageGallery(int id, AdminImageGallery adminImageGallery)
-        {
-            if (id != adminImageGallery.AdminImgsId)
+            catch (Exception ex)
             {
-                return BadRequest();
+                // Log the exception for debugging purposes
+                Console.WriteLine($"Error while posting all images in ImageGallaryController: {ex}");
+                throw;
             }
+        }
 
-            var success = await _repository.UpdateAdminImageGallery(id, adminImageGallery);
-            if (!success)
+        [HttpGet("GetAllDetailsFromAdminTable")]
+        public async Task<ActionResult<List<AdminImageGallery>>> Getall()
+        {
+            try
             {
-                return NotFound();
+                var images = await _context.Getall();
+                if (images == null)
+                {
+                    return NotFound();
+                }
+                return new JsonResult(images);
             }
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                // Log the exception for debugging purposes
+                Console.WriteLine($"Error while getting all images in ImageGallaryController: {ex}");
+                throw;
+            }
         }
 
-        // POST: api/AdminImageGalleries
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<IActionResult> PostAdminImageGallery(AdminImageGallery adminImageGallery)
+        [HttpGet("GetById")]
+        public async Task<ActionResult<AdminImageGallery>> Getadminid(int id)
         {
-            var id = await _repository.CreateAdminImageGallery(adminImageGallery);
-            return CreatedAtAction("GetAdminImageGallery", new { id = id }, adminImageGallery);
+            try
+            {
+                var images = await _context.Getadminid(id);
+                if (images == null)
+                {
+                    return NotFound();
+                }
+                return new JsonResult(images);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for debugging purposes
+                Console.WriteLine($"Error while getting image by id in ImageGallaryController: {ex}");
+                throw;
+            }
         }
 
-        [HttpPost("New")]
-        public async Task<ActionResult<AdminImageGallery>> PostCourse([FromForm] AdminImageGallery adminImage, IFormFile imageFile)
-        {
-            var createdAdminImage = await _repository.AdminImageAsync(adminImage, imageFile);
-            return CreatedAtAction(nameof(GetAdminImageGallery), new { id = createdAdminImage.AdminImgsId }, createdAdminImage);
-        }
-
-        // DELETE: api/AdminImageGalleries/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAdminImageGallery(int id)
+        public async Task<ActionResult<bool>> Delete(int id)
         {
-            var success = await _repository.DeleteAdminImageGallery(id);
-            if (!success)
+            try
             {
-                return NotFound();
-            }
+                var isDeleted = await _context.Delete(id);
 
-            return NoContent();
+                if (!isDeleted)
+                {
+                    return NotFound();
+                }
+
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for debugging purposes
+                Console.WriteLine($"Error while deleting image in ImageGallaryController: {ex}");
+                throw;
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<AdminImageGallery>> Put(int id, [FromForm] FileModel aiu)
+        {
+            try
+            {
+                var updatedImage = await _context.Update(id, aiu);
+
+                if (updatedImage == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(updatedImage);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for debugging purposes
+                Console.WriteLine($"Error while updating image in ImageGallaryController: {ex}");
+                throw;
+            }
         }
     }
 }

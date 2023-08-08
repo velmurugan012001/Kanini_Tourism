@@ -16,7 +16,6 @@ export default function Addpackage() {
   
 
   const [formData, setFormData] = useState({
-    packageID: 0,
     offeringType: '',
     destination: '',
     location: '',
@@ -25,6 +24,20 @@ export default function Addpackage() {
     totaldays: 0,
     itineraryDetails: '',
     pricePerPerson: '',
+    hotelName: '',
+    hotelPlace: '',
+    hotelImage: '',
+    foodType: '',
+    bedType: '',
+    vehicleType: '',
+    toDate: '',
+    fromDate: '',
+    facilities: '',
+    itinerary: '',
+    activitiesName: '',
+    description: '',
+    duration: 0,
+    activitiesImageUrl: ''
   });
 
   const handleChange = (e) => {
@@ -38,14 +51,16 @@ export default function Addpackage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        console.log("Formdata")
+      console.log(formData);
+       
       // Send the form data to the server using Axios POST request
-      const response = await axios.post('https://localhost:7202/api/Packages', formData,);
-      console.log(response)
+      const response = await axios.post('https://localhost:7202/api/Package', formData);
+  
+      console.log(response);
       console.log('Server response:', response.data);
+  
       // Reset the form data after successful submission (optional)
       setFormData({
-        packageID: 0,
         offeringType: '',
         destination: '',
         location: '',
@@ -54,60 +69,41 @@ export default function Addpackage() {
         totaldays: 0,
         itineraryDetails: '',
         pricePerPerson: '',
+        hotelName: '',
+        hotelPlace: '',
+        hotelImage: '',
+        foodType: '',
+        bedType: '',
+        vehicleType: '',
+        toDate: '',
+        fromDate: '',
+        facilities: '',
+        itinerary: '',
+        activitiesName: '',
+        description: '',
+        duration: 0,
+        activitiesImageUrl: '',
       });
+      // Show the alert after successful form submission
+      window.alert('Form submitted successfully!');
     } catch (error) {
       console.error('Error submitting form:', error);
     }
   };
+  
+
+    
+
      // State to control the display of popups
   const [showHotelPopup, setShowHotelPopup] = useState(false);
   const [showTravelPopup, setShowTravelPopup] = useState(false);
   const [showActivitiesPopup, setShowActivitiesPopup] = useState(false);
 
-  
-  // State to hold the fetched data for each popup
-  const [hotelData, setHotelData] = useState({});
-  const [travelData, setTravelData] = useState({});
-  const [activitiesData, setActivitiesData] = useState({});
-
-  // Function to fetch data for each popup
-  const fetchHotelData = async () => {
-    try {
-      const response = await axios.get('https://localhost:7202/api/Hotels');
-      setHotelData(response.data); // Assuming the API response is an object containing hotel data
-    } catch (error) {
-      console.error('Error fetching hotel data:', error);
-    }
-  };
-
-  const fetchTravelData = async () => {
-    try {
-      const response = await axios.get('https://localhost:7202/api/Travels');
-      setTravelData(response.data); // Assuming the API response is an object containing travel data
-    } catch (error) {
-      console.error('Error fetching travel data:', error);
-    }
-  };
-
-  const fetchActivitiesData = async () => {
-    try {
-      const response = await axios.get('https://localhost:7202/api/Activities');
-      setActivitiesData(response.data); // Assuming the API response is an object containing activities data
-    } catch (error) {
-      console.error('Error fetching activities data:', error);
-    }
-  };
-
-    // Fetch data when the component mounts
-    useEffect(() => {
-        fetchHotelData();
-        fetchTravelData();
-        fetchActivitiesData();
-      }, []);
-  // State to hold the selected hotel, travel, and activity
+  // State to hold data for each popup
   const [selectedHotel, setSelectedHotel] = useState({});
   const [selectedTravel, setSelectedTravel] = useState({});
   const [selectedActivity, setSelectedActivity] = useState({});
+
   // Function to open and close the popups
   const handleHotelPopup = (hotel) => {
     setSelectedHotel(hotel);
@@ -123,7 +119,42 @@ export default function Addpackage() {
     setSelectedActivity(activity);
     setShowActivitiesPopup(true);
   };
+  const handleActivitiesSave = (editedActivity) => {
+    // Update the formData with the editedActivity data
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      activitiesName: editedActivity.activitiesName,
+      description: editedActivity.description,
+      duration: editedActivity.duration,
+      // Add more fields as needed
+    }));
+   };
+// Function to handle saving travel data
+const handleTravelSave = (editedTravel) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      vehicleType: editedTravel.vehicleType,
+      toDate: editedTravel.toDate,
+      fromDate: editedTravel.fromDate,
+      facilities: editedTravel.facilities,
+      itinerary: editedTravel.itinerary,
+      // Add more fields as needed
+    }));
+  };
 
+   // Function to handle saving hotel data
+   const handleHotelSave = (editedHotel) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      hotelName: editedHotel.hotelName,
+      hotelImage: editedHotel.hotelImage,
+      hotelPlace: editedHotel.hotelPlace,
+      foodType: editedHotel.foodType,
+      bedType: editedHotel.bedType,
+      
+      // Add more fields as needed
+    }));
+  };
   return (
     <div>
       <Carousel interval={3000} /* Auto slide every 3 seconds */>
@@ -236,22 +267,34 @@ export default function Addpackage() {
                 onChange={handleChange}
               />
             </Form.Group>
-
-           
- 
-    {/* Buttons to open popups */}
-    <Button variant="secondary" onClick={() => handleHotelPopup(hotelData)}>Hotel Details</Button>
-    <Button variant="secondary" onClick={() => handleTravelPopup(travelData)}>Travel Details</Button>
-    <Button variant="secondary" onClick={() => handleActivitiesPopup(activitiesData)}>Activities Details</Button>
+ {/* Buttons to open popups */}
+ <Button variant="secondary" onClick={() => handleHotelPopup()}>Hotel Details</Button>
+    <Button variant="secondary" onClick={() => handleTravelPopup()}>Travel Details</Button>
+    <Button variant="secondary" onClick={() => handleActivitiesPopup()}>Activities Details</Button>
 
     {/* Hotel Popup */}
-    <HotelPopup show={showHotelPopup} handleClose={() => setShowHotelPopup(false)} hotel={selectedHotel} />
+    <HotelPopup
+        show={showHotelPopup}
+        handleClose={() => setShowHotelPopup(false)}
+        hotel={selectedHotel}
+        onSave={handleHotelSave} // Pass the onSave prop here
+      />
 
-    {/* Travel Popup */}
-    <TravelPopup show={showTravelPopup} handleClose={() => setShowTravelPopup(false)} travel={selectedTravel} />
+      {/* Travel Popup */}
+      <TravelPopup
+        show={showTravelPopup}
+        handleClose={() => setShowTravelPopup(false)}
+        travel={selectedTravel}
+        onSave={handleTravelSave} // Pass the onSave prop here
+      />
 
     {/* Activities Popup */}
-    <ActivitiesPopup show={showActivitiesPopup} handleClose={() => setShowActivitiesPopup(false)} activity={selectedActivity} />
+    <ActivitiesPopup
+        show={showActivitiesPopup}
+        handleClose={() => setShowActivitiesPopup(false)}
+        activity={selectedActivity}
+        onSave={handleActivitiesSave} // Pass the onSave prop here
+      />
 
             {/* Add more form fields for other properties as needed */}
             <Button variant="primary" type="submit" onClick={handleSubmit}>
@@ -262,4 +305,4 @@ export default function Addpackage() {
       </Card>
     </div>
   );
-}
+  }

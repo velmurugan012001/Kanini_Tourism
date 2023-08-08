@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './PackagePage.css'; // Import the custom CSS file
@@ -8,18 +7,24 @@ import img1 from './../../Assect/bg1.jpg';
 import img2 from './../../Assect/bg2.jpg';
 import img3 from './../../Assect/bg1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import HotelPopup from './HotelPopup.jsx';
+import ActivitiesPopup from './ActivitiesPopup';
+import HotelPopup from './HotelPopup';
+import TravelPopup from './DisTravelPopup';
 
 function Package() {
   const [packages, setPackages] = useState([]);
   const [showHotelPopup, setShowHotelPopup] = useState(false);
-  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [selectedHotel, setSelectedHotel] = useState({});
+  const [showTravelPopup, setShowTravelPopup] = useState(false);
+  const [selectedTravel, setSelectedTravel] = useState({}); // Initialize with an empty object
+  const [showActivitiesPopup, setShowActivitiesPopup] = useState(false);
+  const [selectedActivities, setSelectedActivities] = useState({});
 
   useEffect(() => {
     // Function to fetch package details
     const fetchPackages = async () => {
       try {
-        const response = await fetch('https://localhost:7202/api/Packages'); // Replace with your API endpoint URL
+        const response = await fetch('https://localhost:7202/api/Package'); // Replace with your API endpoint URL
         const data = await response.json();
         setPackages(data); // Assuming the response contains an array of package details
       } catch (error) {
@@ -30,32 +35,20 @@ function Package() {
     fetchPackages();
   }, []);
 
-  const fetchHotelDetails = async (hotalId) => {
-    try {
-      const response = await axios.get(`https://localhost:7202/api/Hotels/${hotalId}`);
-      const hotel = response.data;
-      setSelectedHotel(hotel);
-      setShowHotelPopup(true);
-    } catch (error) {
-      console.error('Error fetching hotel details:', error);
-    }
-  };
-  
-
-  const handleHotelClick = (hotel) => {
-   
-      fetchHotelDetails(hotel.hotalId);
-   
-  };
-  
-  
-
-  const handleCloseHotelPopup = () => {
-    setSelectedHotel(null);
-    setShowHotelPopup(false);
+  const handleHotelPopup = (hotel) => {
+    setSelectedHotel(hotel);
+    setShowHotelPopup(true);
   };
 
-    
+  const handleTravelPopup = (travel) => {
+    setSelectedTravel(travel);
+    setShowTravelPopup(true);
+  };
+
+  const handleActivitiesPopup = (activity) => {
+    setSelectedActivities(activity);
+    setShowActivitiesPopup(true);
+  };
   return (
     <div>
       <Carousel interval={3000} /* Auto slide every 3 seconds */>
@@ -86,7 +79,7 @@ function Package() {
         {packages.map((pkg) => (
           <div key={pkg.id} className="col">
             <Card className="custom-card" style={{ width: '80rem', height: '40rem' }}>
-  <Card.Img variant="top" src={pkg.imageSrc} style={{ width: '18rem' }} />
+            <Card.Img variant="top" src={pkg.imageSrc} style={{ width: '18rem' }} />
   <Card.Body className="custom-card-body">
     <Card.Title className="custom-card-title">{pkg.title}</Card.Title>
     <Card.Text>
@@ -101,31 +94,43 @@ function Package() {
       <p>Total Days: {pkg.totaldays}</p>
     </Card.Text>
   </Card.Body>
-  <ListGroup className="list-group-flush">
-                <ListGroup.Item
-                  className="custom-list-group-item"
-                  onClick={() => handleHotelClick(pkg.hotel)}
-                >
+              <ListGroup className="list-group-flush">
+                <ListGroup.Item className="custom-list-group-item" onClick={() => handleHotelPopup(pkg)}>
                   Hotel
                 </ListGroup.Item>
-    <ListGroup.Item className="custom-list-group-item">Travel</ListGroup.Item>
-    <ListGroup.Item className="custom-list-group-item">Activities</ListGroup.Item>
-  </ListGroup>
-  <Card.Body>
+                <ListGroup.Item className="custom-list-group-item" onClick={() => handleTravelPopup(pkg)}>
+                  Travel
+                </ListGroup.Item>
+                <ListGroup.Item className="custom-list-group-item" onClick={() => handleActivitiesPopup(pkg)}>
+                  Activities
+                </ListGroup.Item>
+              </ListGroup>
+              <Card.Body>
     <Card.Link href="#" className="custom-card-link">
       Price Per Person: {pkg.pricePerPerson}
     </Card.Link>
   </Card.Body>
-</Card>
+            </Card>
           </div>
         ))}
       </div>
-       {/* Render the HotelPopup component */}
-       {selectedHotel && (
-        <HotelPopup
-          show={showHotelPopup}
-          handleClose={handleCloseHotelPopup}
-          hotel={selectedHotel}
+     
+      {/* Hotel Popup */}
+      {showHotelPopup && (
+        <HotelPopup show={showHotelPopup} handleClose={() => setShowHotelPopup(false)} hotel={selectedHotel} />
+      )}
+
+      {/* Travel Popup */}
+      {showTravelPopup && (
+        <TravelPopup show={showTravelPopup} handleClose={() => setShowTravelPopup(false)} travelDetails={selectedTravel} />
+      )}
+
+      {/* Activities Popup */}
+      {showActivitiesPopup && (
+        <ActivitiesPopup
+          show={showActivitiesPopup}
+          handleClose={() => setShowActivitiesPopup(false)}
+          activitiesDetails={selectedActivities}
         />
       )}
     </div>

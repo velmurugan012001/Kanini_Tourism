@@ -3,8 +3,32 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const ActivitiesPopup = ({ show, handleClose, activity }) => {
+const ActivitiesPopup = ({ show, handleClose, activity ,onSave }) => {
   const [editedActivity, setEditedActivity] = useState({ ...activity });
+  const [formData, setFormData] = useState({
+    offeringType: '',
+    destination: '',
+    location: '',
+    days: 0,
+    nights: 0,
+    totaldays: 0,
+    itineraryDetails: '',
+    pricePerPerson: '',
+    hotelName: '',
+    hotelPlace: '',
+    hotelImage: '',
+    foodType: '',
+    bedType: '',
+    vehicleType: '',
+    toDate: '',
+    fromDate: '',
+    facilities: '',
+    itinerary: '',
+    activitiesName: '',
+    description: '',
+    duration: 0,
+    activitiesImageUrl: ''
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,8 +42,20 @@ const ActivitiesPopup = ({ show, handleClose, activity }) => {
     // Handle the form submission here, e.g., update the activity data in the database
     // The edited data is available in the 'editedActivity' state variable
     console.log('Edited activity data:', editedActivity);
+     // Call the onSave function with the edited data
+     onSave(editedActivity);
+    // Update formData with editedActivity data
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      activitiesName: editedActivity.activitiesName,
+      description: editedActivity.description,
+      duration: editedActivity.duration,
+      // Add more fields as needed
+    }));
+
     handleClose(); // Close the modal after form submission
   };
+
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -28,17 +64,17 @@ const ActivitiesPopup = ({ show, handleClose, activity }) => {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group controlId="activityName">
+          <Form.Group controlId="activitiesName">
             <Form.Label>Activity Name</Form.Label>
             <Form.Control
               type="text"
-              name="name"
-              value={editedActivity.name}
+              name="activitiesName"
+              value={editedActivity.activitiesName}
               onChange={handleChange}
             />
           </Form.Group>
 
-          <Form.Group controlId="activityDescription">
+          <Form.Group controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control
               as="textarea"
@@ -48,7 +84,7 @@ const ActivitiesPopup = ({ show, handleClose, activity }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="activityDuration">
+          <Form.Group controlId="duration">
             <Form.Label>Duration</Form.Label>
             <Form.Control
               type="number"

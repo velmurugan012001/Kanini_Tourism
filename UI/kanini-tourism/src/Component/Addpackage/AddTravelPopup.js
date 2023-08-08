@@ -2,9 +2,18 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
-const TravelPopup = ({ show, handleClose, travel }) => {
-  const [editedTravel, setEditedTravel] = useState({ ...travel });
+const TravelPopup = ({ show, handleClose, travel, onSave }) => {
+    const [editedTravel, setEditedTravel] = useState({ ...travel });
+  const [formData, setFormData] = useState({
+    // Add the initial values for the formData object as needed
+    // For travel related fields, initialize them here if needed
+    vehicleType: '',
+    toDate: '',
+    fromDate: '',
+    facilities: '',
+    itinerary: '',
+    // Add more fields as needed
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +27,19 @@ const TravelPopup = ({ show, handleClose, travel }) => {
     // Handle the form submission here, e.g., update the travel data in the database
     // The edited data is available in the 'editedTravel' state variable
     console.log('Edited travel data:', editedTravel);
+ // Call the onSave function with the edited data
+ onSave(editedTravel);
+    // Update formData with editedTravel data
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      vehicleType: editedTravel.vehicleType,
+      toDate: editedTravel.toDate,
+      fromDate: editedTravel.fromDate,
+      facilities: editedTravel.facilities,
+      itinerary: editedTravel.itinerary,
+      // Add more fields as needed
+    }));
+
     handleClose(); // Close the modal after form submission
   };
 
@@ -28,7 +50,7 @@ const TravelPopup = ({ show, handleClose, travel }) => {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group controlId="travelVehicleType">
+          <Form.Group controlId="vehicleType">
             <Form.Label>Vehicle Type</Form.Label>
             <Form.Control
               type="text"
@@ -38,7 +60,7 @@ const TravelPopup = ({ show, handleClose, travel }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="travelToDate">
+          <Form.Group controlId="toDate">
             <Form.Label>To Date</Form.Label>
             <Form.Control
               type="date"
@@ -48,7 +70,7 @@ const TravelPopup = ({ show, handleClose, travel }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="travelFromDate">
+          <Form.Group controlId="fromDate">
             <Form.Label>From Date</Form.Label>
             <Form.Control
               type="date"
@@ -58,12 +80,22 @@ const TravelPopup = ({ show, handleClose, travel }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="travelFacilities">
+          <Form.Group controlId="facilities">
             <Form.Label>Facilities</Form.Label>
             <Form.Control
               type="text"
               name="facilities"
               value={editedTravel.facilities}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="itinerary">
+            <Form.Label>itinerary</Form.Label>
+            <Form.Control
+              type="text"
+              name="itinerary"
+              value={editedTravel.itinerary}
               onChange={handleChange}
             />
           </Form.Group>

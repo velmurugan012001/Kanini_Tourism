@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddScoped<ITravelRepository, TravelRepository>();
 //builder.Services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
-builder.Services.AddScoped<IAdminImageGalleryRepository, AdminImageGalleryRepository>();
+builder.Services.AddScoped<IImageGallary, ImageGallaryServices>();
 builder.Services.AddScoped< IAdminUseService, UsersServices> ();
 builder.Services.AddScoped<IBillingDetailsRepository, BillingDetailsRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();

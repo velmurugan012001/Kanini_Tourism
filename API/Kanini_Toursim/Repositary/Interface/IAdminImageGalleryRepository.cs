@@ -1,15 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kanini_Toursim.Model;
+using Kanini_Toursim.Repositary;
 using Microsoft.AspNetCore.Mvc;
+using static Kanini_Toursim.Model.AdminImageGallery;
 
-public interface IAdminImageGalleryRepository
+
+
+public interface IImageGallary
+
 {
-    Task<IEnumerable<AdminImageGallery>> GetAllAdminImageGalleries();
-    Task<AdminImageGallery> AdminImageAsync(AdminImageGallery adminImage, IFormFile imageFile);
+        public Task<List<AdminImageGallery>> Postall([FromForm] FileModel aiu);
 
-    Task<AdminImageGallery?> GetAdminImageGalleryById(int id);
-    Task<int> CreateAdminImageGallery(AdminImageGallery adminImageGallery);
-    Task<bool> UpdateAdminImageGallery(int id, AdminImageGallery adminImageGallery);
-    Task<bool> DeleteAdminImageGallery(int id);
-}
+        public Task<List<AdminImageGallery>> Getall();
+        public Task<AdminImageGallery> Getadminid(int id);
+
+        Task<AdminImageGallery> Update(int id, FileModel aiu);
+        Task<bool> Delete(int id);
+    }
+

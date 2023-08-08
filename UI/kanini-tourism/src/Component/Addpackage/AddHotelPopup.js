@@ -3,8 +3,20 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const HotelPopup = ({ show, handleClose, hotel }) => {
+const HotelPopup = ({ show, handleClose, hotel ,onSave}) => {
   const [editedHotel, setEditedHotel] = useState({ ...hotel });
+  const [formData, setFormData] = useState({
+    // Add the initial values for the formData object as needed
+    // For hotel related fields, initialize them here if needed
+    hotelName: '',
+    hotelImage: '',
+    hotelPlace: '',
+    foodType: '',
+    bedType: '',
+    
+
+    // Add more fields as needed
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +30,23 @@ const HotelPopup = ({ show, handleClose, hotel }) => {
     // Handle the form submission here, e.g., update the hotel data in the database
     // The edited data is available in the 'editedHotel' state variable
     console.log('Edited hotel data:', editedHotel);
+    
+      // Call the onSave function with the edited data
+      onSave(editedHotel);
+    // Update formData with editedHotel data
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      hotelName: editedHotel.hotelName,
+      hotelImage: editedHotel.hotelImage,
+      hotelPlace: editedHotel.hotelPlace,
+      foodType: editedHotel.foodType,
+      bedType: editedHotel.bedType,
+      
+
+
+      // Add more fields as needed
+    }));
+
     handleClose(); // Close the modal after form submission
   };
 
@@ -32,8 +61,17 @@ const HotelPopup = ({ show, handleClose, hotel }) => {
             <Form.Label>Hotel Name</Form.Label>
             <Form.Control
               type="text"
-              name="name"
-              value={editedHotel.name}
+              name="hotelName"
+              value={editedHotel.hotelName}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="hotelImage">
+            <Form.Label>Hotel Image</Form.Label>
+            <Form.Control
+              type="text"
+              name="hotelImage"
+              value={editedHotel.hotelImage}
               onChange={handleChange}
             />
           </Form.Group>
@@ -42,13 +80,13 @@ const HotelPopup = ({ show, handleClose, hotel }) => {
             <Form.Label>Place</Form.Label>
             <Form.Control
               type="text"
-              name="place"
-              value={editedHotel.place}
+              name="hotelPlace"
+              value={editedHotel.hotelPlace}
               onChange={handleChange}
             />
           </Form.Group>
 
-          <Form.Group controlId="hotelFoodType">
+          <Form.Group controlId="foodType">
             <Form.Label>Food Type</Form.Label>
             <Form.Control
               type="text"
@@ -58,7 +96,7 @@ const HotelPopup = ({ show, handleClose, hotel }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="hotelBedType">
+          <Form.Group controlId="bedType">
             <Form.Label>Bed Type</Form.Label>
             <Form.Control
               type="text"
