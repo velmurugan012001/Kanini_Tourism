@@ -1,5 +1,5 @@
 import React from 'react'
-import './UserFooter.css';
+// import './UserFooter.css';
 
 const UserFooter = () => {
   return (
