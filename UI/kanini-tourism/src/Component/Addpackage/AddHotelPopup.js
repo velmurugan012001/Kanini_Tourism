@@ -67,7 +67,7 @@ const HotelPopup = ({ show, handleClose, hotel ,onSave}) => {
             />
           </Form.Group>
           <Form.Group controlId="hotelImage">
-            <Form.Label>Hotel Image</Form.Label>
+            <Form.Label>Room Type</Form.Label>
             <Form.Control
               type="text"
               name="hotelImage"

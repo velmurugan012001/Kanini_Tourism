@@ -12,6 +12,7 @@ import img3 from './../../Assect/bg1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import './Addpackage.css'
+import Cauntact from '../About/Countact';
 
 export default function Addpackage() {
   
@@ -157,6 +158,7 @@ const handleTravelSave = (editedTravel) => {
     }));
   };
   return (
+    <>
     <div className='bgimg2'>
       
 
@@ -282,6 +284,8 @@ const handleTravelSave = (editedTravel) => {
           </Form>
         </Card.Body>
       </Card>
+    
     </div>
+      <Cauntact></Cauntact></>
   );
   }

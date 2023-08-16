@@ -47,3 +47,27 @@
 .tourism-info p:last-child {
   margin-bottom: 0;
 }
+.cards-container {
+  display: flex;
+  justify-content: space-between; /* Adjust this as needed */
+  align-items: center; /* Adjust this as needed */
+  margin-top: 20px;
+}
+
+.card {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px; /* Adjust this as needed */
+}
+
+.card-content {
+  margin-top: 10px;
+}

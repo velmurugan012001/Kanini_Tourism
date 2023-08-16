@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kanini_Toursim", "Kanini_Toursim\Kanini_Toursim.csproj", "{FD816403-7C7B-49C9-9898-821AA06E8710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToursimTesting", "ToursimTesting\ToursimTesting.csproj", "{0BED2C2C-D772-4333-9C57-BAA6D2949F07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourismTesting", "TourismTesting\TourismTesting.csproj", "{F56CDF52-A1BD-42C3-8DD2-1C0C141F08F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{FD816403-7C7B-49C9-9898-821AA06E8710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD816403-7C7B-49C9-9898-821AA06E8710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD816403-7C7B-49C9-9898-821AA06E8710}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BED2C2C-D772-4333-9C57-BAA6D2949F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BED2C2C-D772-4333-9C57-BAA6D2949F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BED2C2C-D772-4333-9C57-BAA6D2949F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BED2C2C-D772-4333-9C57-BAA6D2949F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F56CDF52-A1BD-42C3-8DD2-1C0C141F08F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F56CDF52-A1BD-42C3-8DD2-1C0C141F08F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F56CDF52-A1BD-42C3-8DD2-1C0C141F08F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F56CDF52-A1BD-42C3-8DD2-1C0C141F08F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

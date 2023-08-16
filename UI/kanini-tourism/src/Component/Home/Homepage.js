@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Homepage.css';
 import Carousel from 'react-bootstrap/Carousel';
 import img1 from './../../Assect/bg1.jpg';
 import img2 from './../../Assect/bg2.jpg';
 import img3 from './../../Assect/bg3.webp';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Countact from '../About/Countact';
+import imgs1 from './../../Assect/a2.jpg';
+import imgs2 from './../../Assect/p2.jpg';
+import imgs3 from './../../Assect/p3.jpg';
 
 
 
@@ -13,6 +16,7 @@ export default function Homepage() {
 
 
   return (
+    <>
     <div className='homepage-container'>
      <Carousel interval={2000} /* Auto slide every 3 seconds */>
         <Carousel.Item>
@@ -28,7 +32,7 @@ export default function Homepage() {
         <Carousel.Item>
           <img className="d-block w-100" src={img2} alt="Second slide" />
           <Carousel.Caption>
-            <h3>Second slide label</h3>
+            <h3> Attraction, Accessibility, Accommodation, Amenities and Activities.</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -56,6 +60,36 @@ export default function Homepage() {
           Plan your next journey with us and embark on an unforgettable adventure. Discover the beauty of the world and create lasting memories with our exceptional tourism services.
         </p>
       </div>
+      
+     
     </div>
+  {/* Adding three cards */}
+<div className='cards-container'>
+  <div className='card'>
+    <img className='card-image' src={imgs1} alt='Card 1' />
+    <div className='card-content'>
+      <h2>Gokarna, Karnataka</h2>
+      <p>Land of palm trees, blue seas and golden sands..</p>
+    </div>
+  </div>
+  <div className='card'>
+    <img className='card-image' src={imgs2} alt='Card 2' />
+    <div className='card-content'>
+      <h2>Munnar, Kerala</h2>
+      <p>Tea Gardens, Lakes and Pretty little hill-station. .</p>
+    </div>
+  </div>
+  <div className='card'>
+    <img className='card-image' src={imgs3} alt='Card 3' />
+    <div className='card-content'>
+      <h2>Goa</h2>
+      <p>Beaches, Sunsets and Crazy Nights. ...</p>
+    </div>
+  </div>
+</div>
+<br></br>
+
+    <Countact />
+    </>
   );
 }

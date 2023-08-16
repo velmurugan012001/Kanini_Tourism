@@ -10,20 +10,20 @@ import {
   Card,
   CardContent,
 } from '@mui/material';
-// import BookingPDFGenerator from '../Pdf/BookingPdf';
+// import BookingPDFGenerator from './BookingPdf';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import Tour3 from './../../Assect/bg3.webp';
 
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 
   
 
 function App() {
-  const { UseIdd } = useParams();
+  // const { UseIdd } = useParams();
   const [bookings, setBookings] = useState([]);
   const [formData, setFormData] = useState({
     userId: '',
@@ -91,7 +91,9 @@ function App() {
       console.error('Error deleting booking:', error);
     }
   };
-
+  const alerts = async ()=> {
+    alert("Booked") 
+  }
   return (
     <div>
       <Box>
@@ -115,7 +117,8 @@ function App() {
         }}
       >
         <Container maxWidth="md">
-          <Typography variant="h4" sx={{ marginBottom: 2 }}>
+          
+          <Typography variant="h4" className='Container1' maxWidth="md" style={{ textAlign: 'center', marginTop: '50px' }} sx={{ marginBottom: 2 }}>
             Booking Management
           </Typography>
           <form onSubmit={handleSubmit}>
@@ -197,7 +200,7 @@ function App() {
                 </LocalizationProvider>
               </Grid>
               <Grid item xs={12}>
-                <Button type="submit" variant="contained" color="primary" fullWidth>
+                <Button type="submit" variant="contained" color="primary" fullWidth onClick={alerts}>
                   Book
                 </Button>
               </Grid>
@@ -208,7 +211,7 @@ function App() {
 
       <Container maxWidth="md" sx={{ marginTop: 4 }}>
         <Typography variant="h4" sx={{ marginBottom: 2 }}>
-          Booking List
+          {/* Booking List */}
         </Typography>
         <Grid container spacing={3}>
           {bookings.map((booking) => (

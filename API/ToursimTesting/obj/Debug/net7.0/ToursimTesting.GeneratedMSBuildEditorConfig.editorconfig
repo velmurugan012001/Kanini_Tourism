@@ -1,5 +1,5 @@
 is_global = true
-build_property.DesignTimeBuild = 
+build_property.DesignTimeBuild = true
 build_property.MSBuildProjectFullPath = F:\kanini\project\Kanini Tourism\Kanini_Tourism\API\ToursimTesting\ToursimTesting.csproj
 build_property.DebugSponsorLink = 
 build_property.TargetFramework = net7.0

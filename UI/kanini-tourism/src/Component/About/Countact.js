@@ -1,5 +1,5 @@
 import React from 'react'
-// import './UserFooter.css';
+import './Countact.css';
 
 const UserFooter = () => {
   return (
@@ -19,8 +19,8 @@ const UserFooter = () => {
         <div className="col-lg-4 ">
           <h5 className="text-uppercase">Contact Info</h5>
             <address>
-               <i className="fa fa-phone"></i>&nbsp; <a className="address" href="tel:8754550424">Call Now for any Enquiry</a>  <br/><br/>
-               <i className="fa fa-envelope"></i>&nbsp;  <a className="address" href="mailto :vishalbharathkumar@gmail.com">sparktourism@gmail.com</a> 
+               <i className="fa fa-phone"></i>&nbsp; <a className="address" href="tel:9159692026">Call Now for any Enquiry</a>  <br/><br/>
+               <i className="fa fa-envelope"></i>&nbsp;  <a className="address" href="mailto :bvelmurugan01122001@gmail.com">Eagle@gmail.com</a> 
             </address>
         </div>
          {/* <!-- Social media links section --> */}
@@ -49,7 +49,7 @@ const UserFooter = () => {
     </div>
      {/* <!-- Copyright section --> */}
     <div className="textcenter">
-      &copy;  Spark Tourism
+      &copy;  Eagle Tourism
     </div>
     </footer>
     </div>

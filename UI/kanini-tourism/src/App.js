@@ -11,7 +11,7 @@ import RegistrationPage from './Component/Register/Register';
 import AdminApprovalPage from './Component/Admin/AdminApprovalPage';
 import AdminImageGallery from './Component/Admin/AdminImageGallery';
 import BookingDetails from './Component/Booking/BookingDetails';
-
+import Cauntact from './Component/About/Countact';
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path='/Home' element={<Home />} />
         <Route path='/About' element={<About />} />
-       
+        <Route path='/Countact' element={<Cauntact/>}/> 
         <Route path='/package' element={<Package />} />
         <Route path='/booking' element={<Booking />} />
         <Route path='/' element={<Signup />} />

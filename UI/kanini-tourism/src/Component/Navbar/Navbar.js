@@ -38,9 +38,9 @@ class Navbar extends Component {
           { label: 'Add Package', path: '/Booking', cName: 'nav-links' },
           { label: 'Travel Package', path: '/Package', cName: 'nav-links' }
         );
-      } else if (token.role === 'admin') {
+      } else if (token.role === 'Admin') {
         navItems.push(
-          { label: 'Admin', path: '/Admin', cName: 'nav-links' },
+          { label: 'Admin', path: '/AdminApprovalPage', cName: 'nav-links' },
           { label: 'Home', path: '/Home', cName: 'nav-links' },
           { label: 'Add Package', path: '/Booking', cName: 'nav-links' },
           { label: 'Travel Package', path: '/Package', cName: 'nav-links' }

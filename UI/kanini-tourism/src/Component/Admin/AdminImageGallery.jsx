@@ -107,7 +107,7 @@ const AdminImageGallery = () => {
       <Box  >
         <img src={Tour4} alt="Header Image" style={{ width: '100%', height: '800px', objectFit: 'cover', marginTop: '0px' }} />
       </Box>
-      <h1>Image Gallery</h1>
+      <h1  className='Typography3' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Image Gallery</h1>
       <UploadContainer>
         <Button
           variant="contained"

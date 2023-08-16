@@ -22,7 +22,7 @@ const RegistrationPage = () => {
   const [userNameError, setUserNameError] = useState('');
   const [isNameValid, setIsNameValid] = useState(true);
   const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [passwordError,] = useState('');
   const [addressError, setAddressError] = useState('');
   const [phoneNumberError, setPhoneNumberError] = useState('');
   const [idProofError, setIdProofError] = useState('');
@@ -290,7 +290,7 @@ const RegistrationPage = () => {
             </div>
             <div>
               <TextField
-                label="ID Proof"
+                label="Aadhar No"
                 id='texfield'
                 name="id_Proof"
                 value={formData.id_Proof}

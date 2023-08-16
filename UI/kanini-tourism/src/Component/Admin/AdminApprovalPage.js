@@ -58,6 +58,7 @@ const AdminApprovalPage = () => {
 
   return (
     <div>
+      
        <Carousel interval={2000} /* Auto slide every 3 seconds */>
         <Carousel.Item>
           <img className="d-block w-100" src={img1} alt="First slide" />
@@ -83,8 +84,12 @@ const AdminApprovalPage = () => {
             <p>create lasting memories with our exceptional tourism services..</p>
           </Carousel.Caption>
         </Carousel.Item>
-      </Carousel>
-      <h2>Pending Users</h2>
+      </Carousel><div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh' }}>
+      <Button variant="contained" color="secondary" onClick={handleUploadGallery}>
+        Upload Gallery
+      </Button>
+    </div>
+      <h2 className='Typography1'>Pending Users</h2>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -113,10 +118,8 @@ const AdminApprovalPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
-      <Button variant="contained" color="secondary" onClick={handleUploadGallery}>
-      Upload Gallery
-    </Button>
+<br></br><br></br>
+      
     </div>
     
   );
